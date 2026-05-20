@@ -3,23 +3,29 @@
 :root {
   --background: #181818;
   --foreground: #ededed;
+  --terciary: #9d16d3;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-terciary: var(--terciary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-anton: var(--Anton-Regular);
   --font-literata: var(--literata-all);
+  --font-heading-now-small: var(--heading-now-small);
+  --font-heading-now-medium: var(--heading-now-medium);
+  --font-heading-now-larger: var(--heading-now-larger);
+  --font-dm-sans: var(--dm-sans);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #181818;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
@@ -36,6 +42,411 @@ body {
   font-family: Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
-/* .font-anton {
-  font-family: --Anton;
+@property --ebox-offset-size {
+  syntax: "*";
+  inherits: false;
+}
+
+@property --ebox-line-color {
+  syntax: "<percentage>";
+  inherits: false;
+}
+
+@utility ebox-line-* {
+  --ebox-line-color: --value(--color-*, [color]);
+  --ebox-line-color: --modifier(--color-*, [color]);
+}
+
+@utility ebox-* {
+
+  &::before {
+    z-index: -30;
+    content: "";
+    position: absolute;
+    border-width: 0 1px 1px 0;
+    --ebox-offset-size: --value(integer)%;
+
+    left: 0px;
+    /* width: calc(--value(integer)% + 100%); */
+    width: calc(100% + --value(integer)px);
+    height: calc(100% + --value(integer)px);
+    background-color: --value(--color-*, [color]);
+    background-color: --modifier(--color-*, [color]);
+
+    /* clip-path: polygon(0 0, 100% 0, calc(100% + --value(integer)px) --value(integer)px, calc(100% + --value(integer)px) calc(100% + --value(integer)px), --value(integer)px calc(100% + --value(integer)px), 0 100%); */
+    /* clip-path: polygon(0 0, 90% 0, 90% 10%, 100% 100%, 10% 90%, 0 100%); */
+
+    clip-path: polygon(0 0, 0 calc(100% - --value(integer)px), --value(integer)px 100%, 100% 100%, 100% --value(integer)px, calc(100% - --value(integer)px) 0%);
+    /* clip-path: polygon(0 0, 0 calc(100% - --value(integer)px), 5% 100%, 100% 100%); */
+    /* clip-path: polygon(0); */
+    /* clip-path: polygon(0% 0%, 0% 95%, 5% 100%, 100% 100%, 100% 5%, 95% 0%); */
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 20;
+
+    left: 100%;
+    top: 100%;
+    width: --value(integer)px;
+    height: --value(integer)px;
+    transform-origin: top left;
+    background-color: var(--ebox-line-color);
+
+    clip-path: polygon(0 1px, 1px 0, 100% 98%, 98% 100%);
+  }
+}
+
+@utility ebox-top-perspective-* {
+  &::before {
+    bottom: -1px;
+    transform: rotateX(180deg);
+    animation: b --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+  }
+
+  &::after {
+    transform-origin: center left;
+    bottom: calc(100% - 2px);
+    transform: rotateX(180deg);
+    animation: a --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+  }
+}
+
+@utility ebox-re-top-perspective-* {
+  &::before {
+    bottom: -1px;
+    transform: rotateX(180deg);
+    clip-path: polygon(var(--ebox-offset-size) calc(100% - var(--ebox-offset-size)), 0% calc(100% - var(--ebox-offset-size)), 0% 0%, calc(100% - var(--ebox-offset-size)) 0%, 100% 0%, 100% calc(100% - var(--ebox-offset-size)));
+    animation: r-b --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+  }
+
+  &::after {
+    transform-origin: center left;
+    bottom: calc(100% - 1px);
+    transform: rotateX(180deg);
+    clip-path: polygon(0 1px, 1px 0, 100% 0%, 98% 2%);
+    animation: r-a --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(120%);
+  }
+
+  100% {
+    transform: translateX(-120%);
+  }
+}
+
+@utility ebox-perspective-* {
+  &::before {
+    top: 0px;
+    animation: b --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+  }
+
+  &::after {
+    top: 100%;
+    animation: a --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+  }
+}
+
+@utility ebox-re-perspective-* {
+  &::before {
+    top: 0px;
+    clip-path: polygon(var(--ebox-offset-size) calc(100% - var(--ebox-offset-size)), 0% calc(100% - var(--ebox-offset-size)), 0% 0%, calc(100% - var(--ebox-offset-size)) 0%, 100% 0%, 100% calc(100% - var(--ebox-offset-size)));
+    animation: r-b --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+
+  }
+
+  &::after {
+    top: 100%;
+    clip-path: polygon(0 1px, 1px 0, 100% 0%, 98% 2%);
+    animation: r-a --modifier(integer, [integer])ms ease-in-out forwards;
+    animation-delay: --value(integer, [integer])ms;
+  }
+}
+
+@keyframes b {
+  1% {
+    clip-path: polygon(var(--ebox-offset-size) 100%, 0% calc(100% - var(--ebox-offset-size)), 0% 0%, calc(100% - var(--ebox-offset-size)) 0%, 100% var(--ebox-offset-size), 100% 100%);
+  }
+
+  100% {
+    clip-path: polygon(var(--ebox-offset-size) calc(100% - var(--ebox-offset-size)), 0% calc(100% - var(--ebox-offset-size)), 0% 0%, calc(100% - var(--ebox-offset-size)) 0%, 100% 0%, 100% calc(100% - var(--ebox-offset-size)));
+  }
+}
+
+@keyframes r-b {
+  1% {
+    clip-path: polygon(var(--ebox-offset-size) calc(100% - var(--ebox-offset-size)), 0% calc(100% - var(--ebox-offset-size)), 0% 0%, calc(100% - var(--ebox-offset-size)) 0%, 100% 0%, 100% calc(100% - var(--ebox-offset-size)));
+  }
+
+  100% {
+    clip-path: polygon(var(--ebox-offset-size) 100%, 0% calc(100% - var(--ebox-offset-size)), 0% 0%, calc(100% - var(--ebox-offset-size)) 0%, 100% var(--ebox-offset-size), 100% 100%);
+  }
+}
+
+@keyframes a {
+  1% {
+    clip-path: polygon(0 1px, 1px 0, 100% 98%, 98% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 1px, 1px 0, 100% 0%, 98% 2%);
+  }
+}
+
+@keyframes r-a {
+  1% {
+    clip-path: polygon(0 1px, 1px 0, 100% 0%, 98% 2%);
+  }
+
+  100% {
+    clip-path: polygon(0 1px, 1px 0, 100% 98%, 98% 100%);
+  }
+}
+
+@utility shadow-solid-* {
+  box-shadow: --modifier(integer, [integer])px --value(integer, [integer])px var(--tw-shadow-color);
+}
+
+@utility text-shadow-solid-* {
+  text-shadow: --modifier(integer, [integer])px --value(integer, [integer])px var(--tw-text-shadow-color);
+}
+
+
+@property --x-size {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --y-size {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --z-size {
+  syntax: "*";
+  inherits: true;
+}
+
+@utility isobox-x-* {
+  --x-size: --value(integer)px;
+}
+
+@utility isobox-y-* {
+  --y-size: --value(integer)px;
+}
+
+@utility isobox-z-* {
+  --z-size: --value(integer)px;
+}
+
+.cube {
+  /* width: 0px;
+  height: 0px; */
+}
+
+.face {
+  transform-origin: 0 0;
+  position: absolute;
+  /* width: 100px;
+  height: 100px; */
+}
+
+.front {
+  height: var(--y-size);
+  width: var(--z-size);
+  -ms-transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
+  -webkit-transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
+  transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
+}
+
+.top {
+  height: var(--z-size);
+  width: var(--x-size);
+  -ms-transform: rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);
+  -webkit-transform: rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);
+  transform: rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);
+}
+
+.side {
+  height: var(--x-size);
+  width: var(--y-size);
+  -ms-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(68px, -131px);
+  -webkit-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(68px, -131px);
+  transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(68px, -131px);
+}
+
+.normal {
+  width: fit-content;
+  height: fit-content;
+  -ms-transform: skew(0deg) translate(0px, 0px) scale(0.864);
+  -webkit-transform: skew(0deg) translate(0px, 0px) scale(0.864);
+  transform: skew(0deg) translate(0px, 0px) scale(0.864);
+}
+
+/* .wrapper {
+  padding: 2.8rem 0px;
+  width: 100%;
+  color: white;
+  font-size: 2rem;
+  } */
+
+/* .marquee-text p {
+    border: 1px solid white;
+    background-color: #141414;
+    border-radius: 999px;
+    padding: 1rem 2.5rem;
+  } */
+
+@utility fadeout-horizontal-* {
+  mask-image: linear-gradient(to right, transparent, black --value(integer, [])px, black calc(100% - --value(integer, [])px), transparent);
+}
+
+@utility fadeout-vertical-* {
+  mask-image: linear-gradient(to top, transparent, black --value(integer, [])px, black calc(100% - --value(integer, [])px), transparent);
+}
+
+.marquee-track-x {
+  width: max-content;
+  animation: marquee-move-text-x var(--speed, 10s) linear infinite var(--direction, forwards);
+}
+
+.marquee-track-y {
+  width: max-content;
+  animation: marquee-move-text-y var(--speed, 10s) linear infinite var(--direction, forwards);
+}
+
+@keyframes marquee-move-text-x {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+@keyframes marquee-move-text-y {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* @media only screen and (max-width: 768px) {
+  .wrapper {
+    font-size: 1.2rem;
+  }
 } */
+
+.noseb {
+  animation: aaa 800ms ease-in-out backwards;
+
+  &>p {
+    opacity: 1;
+    animation: nosea 800ms ease-in-out forwards;
+  }
+}
+
+.nose {
+  animation: aaa 800ms ease-in-out forwards;
+
+  &>p {
+    opacity: 1;
+    animation: nosea 800ms ease-in-out forwards;
+  }
+}
+
+@keyframes nosea {
+  20% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes aaa {
+  0% {
+    flex-direction: row;
+  }
+
+  30% {
+    flex-direction: column;
+  }
+
+  100% {
+    flex-direction: column;
+  }
+}
+
+.delay-absolute {
+  animation-delay: 800ms;
+  animation: animate-absolute 500ms linear forwards;
+}
+
+.delay-absolute-f {
+  animation-delay: 800ms;
+  animation: animate-absolute 500ms linear backwards;
+}
+
+@keyframes animate-absolute {
+  0% {
+    position: relative;
+  }
+
+  49% {
+    position: relative;
+  }
+
+  51% {
+    position: static;
+  }
+
+  100% {
+    position: static;
+  }
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #404040;
+  /* neutral-700 */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #525252;
+  /* neutral-600 */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #404040 transparent;
+}

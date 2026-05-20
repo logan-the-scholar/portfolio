@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Anton, Literata } from "next/font/google";
+import { Geist, Geist_Mono, Anton, Literata, DM_Sans } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
 
 const anton = Anton({
@@ -7,6 +8,31 @@ const anton = Anton({
   variable: "--Anton-Regular",
   style: "normal"
 });
+
+const dm_sans = DM_Sans({
+  style: ["italic", "normal"],
+  weight: "300",
+  variable: "--dm-sans",
+  subsets: ["latin"]
+})
+
+const heading25Med = localFont({
+  src: "./HeadingNowTrial-25Medium.ttf",
+  weight: "500",
+  variable: "--heading-now-medium"
+})
+
+const heading16Bold = localFont({
+  src: "./HeadingNowTrial-15Medium.ttf",
+  weight: "500",
+  variable: "--heading-now-small"
+})
+
+const heading46Bold = localFont({
+  src: "./HeadingNowTrial-46Bold.ttf",
+  weight: "500",
+  variable: "--heading-now-larger"
+})
 
 const literata = Literata({
   variable: "--literata-all",
@@ -36,7 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${anton.className} ${literata.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${anton.className} ${heading16Bold.variable} ${literata.variable} ${heading25Med.variable} ${heading46Bold.variable} ${dm_sans.variable} antialiased`}
       >
         {children}
       </body>
