@@ -1,7 +1,6 @@
 import Stack from "./components/stack";
 import Image from "next/image";
-// import image from "../public/Gemini_Generated_Image_o2epvzo2epvzo2ep.png";
-import sphere from "../public/Gemini_Generated_Image_ma2y8xma2y8xma2y.png";
+import profile from "../public/profile.jpg";
 
 export default function Home() {
   return (
@@ -44,8 +43,8 @@ export default function Home() {
           </div>
         </div> */}
 
-        <div className="content-center flex h-full relative">
-          <div className="absolute top-0 right-0 bg-yellow">
+        <div className="content-center flex w-full h-full">
+          {/* <div className="absolute top-0 right-0 bg-yellow">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="480" height="480"
@@ -57,16 +56,9 @@ export default function Home() {
             >
               <path d="M10.83 2.38a2 2 0 0 1 2.34 0l8 5.74a2 2 0 0 1 .73 2.25l-3.04 9.26a2 2 0 0 1-1.9 1.37H7.04a2 2 0 0 1-1.9-1.37L2.1 10.37a2 2 0 0 1 .73-2.25z" />
             </svg>
-          </div>
+          </div> */}
           {/* <Image src={sphere} alt="" width={400} height={400} className="absolute invert opacity-100 -z-10 hue-rotate-90 mask-radial-at-center mask-radial-from-0% mask-radial-to-100%"></Image> */}
-          <div className="absolute bg-violet-400 -z-10 mask-[radial-gradient(circle,rgba(255,255,255,0.2)_10%,rgba(255,255,255,0.14)_40%,rgba(255,255,255,0.08)_50%,transparent_70%)] w-96 h-96">
-            {/* <Image
-              src={sphere}
-              alt="imagen"
-              width={400}
-              height={400}
-            /> */}
-          </div>
+
 
           {/* <div className="[&>div]:border-orange-400 [&>div]:border bg-background [&>div]:rounded-full [&>div]:size-7 [&>div]:shadow-solid-4/4 [&>div]:shadow-orange-700 [&>div]:my-8 absolute">
             <div></div>
@@ -79,19 +71,58 @@ export default function Home() {
 
           <div className="flex-1 h-full content-center px-20">
             {/* <div className="font-extrabold text-9xl col-span-1 w-fit h-fit">*</div> */}
-            <div className="font-heading-now-medium tracking-wide text-[100px] w-fit flex flex-col items-start">
-              <h1 className="font-bold leading-20">
+            <div className="font-heading-now-medium tracking-wide text-[110px] mb-25 w-fit flex flex-col items-start">
+              <h1 className="font-bold leading-14">
                 {"FULL-STACK"}
                 {/* <span>{"<"}</span> */}
               </h1>
-              <h1 className="text-7xl font-bold">DEVELOPER</h1>
-              {/* <h1 className="font-heading-now-small text-5xl">MACHINE LEARNING</h1> */}
-              <h1 className="font-heading-now-small text-5xl"><span className="font-normal text-4xl">Machine Learning</span><span className="text-3xl">{" &"}</span> DATA ANALISIS</h1>
+              <h1 className="text-[78px] font-bold ml-5">
+                DEVELOPER
+                <span className="font-normal font-heading-now-small text-5xl">
+                  {/* <span className="font-normal text-4xl">Machine Learning</span> */}
+                  <span className="text-4xl mr-2">{" &"}</span>
+                  DATA ANALIST
+                  {/* <span className="relative fadeout-horizontal-5 w-full overflow-clip">
+                    <span className="marquee-track-x flex transition-all relative pl-1 gap-2 w-full">
+                      <p>
+                        DATA ANALIST
+                      </p>
+                      <p>
+                        DATA AAAA
+                      </p>
+                      <p>
+                        DATA BBBB
+                      </p>
+                      <p>
+                        DATA CCCC
+                      </p>
+                      <p>
+                        DATA DDDD
+                      </p>
+                      <p aria-hidden>
+                        DATA ANALIST
+                      </p>
+                      <p aria-hidden>
+                        DATA AAAA
+                      </p>
+                      <p aria-hidden>
+                        DATA BBBB
+                      </p>
+                      <p aria-hidden>
+                        DATA CCCC
+                      </p>
+                      <p aria-hidden>
+                        DATA DDDD
+                      </p>
+                    </span>
+                  </span> */}
+                </span>
+              </h1>
+
             </div>
 
             <div className="w-full flex h-fit">
-              <div className="w-1 h-1 relative">
-                <svg
+              {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="240" height="240"
                   viewBox="0 0 24 24"
@@ -100,11 +131,52 @@ export default function Home() {
                   className="lucide lucide-pentagon-icon lucide-pentagon -top-4 absolute right-1 rotate-45 origin-center"
                 >
                   <path d="M10.83 2.38a2 2 0 0 1 2.34 0l8 5.74a2 2 0 0 1 .73 2.25l-3.04 9.26a2 2 0 0 1-1.9 1.37H7.04a2 2 0 0 1-1.9-1.37L2.1 10.37a2 2 0 0 1 .73-2.25z" />
-                </svg>
-              </div>
-              <div className="font-sans text-lg font-light w-2/5 relative ml-8">
-                <div className="absolute left-9/10 bg-violet-400 text-black bottom-full px-3 py-1 rounded-xl font-semibold">Advertise</div>
-                Desarrollador de <span className="underline">software</span> y <span className="underline">fullstack</span> freelancer, experimentado y apasionado en crear, inventar
+                </svg> */}
+              <div className="font-sans bg-background text-zinc-300 text-[16px] font-light w-4/5 ml-8">
+
+                <div className="float-left mr-4 relative">
+                  <Image className="rounded-full w-14 h-14" src={profile} alt={"Profile image from github"} />
+                  <div className="absolute -z-10 w-53 h-53 rounded-l-full border-b border-l border-[rgb(255,255,255,0.2)] -top-12 -left-25">
+                  </div>
+
+                  <div className="border bg-background group hover:bg-zinc-300 hover:text-background border-zinc-300 text-lg absolute text-nowrap left-[100%] text-inherit -top-[105%] px-1.5 py-2 rounded-2xl select-none cursor-pointer">
+                    <div className="w-3.5 h-5 absolute -left-[6px] -bottom-[13px] origin-center rotate-40">
+                      <svg
+                        className="z-10 absolute group-hover:text-zinc-300"
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                      >
+                        <path
+                          d="M 0 0 L 50 100 L 100 0"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      </svg>
+                      <svg
+                        className="group-hover:text-zinc-300 absolute text-background"
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                      >
+                        <path
+                          d="M 0 0 L 50 100 L 100 0"
+                          fill="currentColor"
+                          stroke="none"
+                          strokeWidth="0"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      </svg>
+                    </div>
+                    Hola! Mi nombre es Joshua
+                  </div>
+                </div>
+
+                <br />Desarrollador de <span className="underline">software</span> y <span className="underline">fullstack</span> freelancer, experimentado y apasionado en crear, inventar
                 y romper estandares. Imparable creativo y amante de los videojuegos, la literatura, artes visuales y la musica.
               </div>
             </div>
@@ -122,10 +194,69 @@ export default function Home() {
             {/* </div> */}
           </div>
 
+          <div className="h-full flex-1 relative">
+            <div
+              className="-z-10 absolute fadeout-vertical-15 w-full h-full face front origin-center isobox-z-505 isobox-y-505 rotate-60"
+            >
+              <div className="speed-30 marquee-track-y transition-all relative w-full! h-max!">
+                <div
+                  className="h-[505px] w-[505px]"
+                  style={{
+                    backgroundSize: "24px 24px",
+                    backgroundImage: `
+                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+                  `,
+                  }}
+                ></div>
+                <div
+                  aria-hidden
+                  className="h-[505px] w-[505px]"
+                  style={{
+                    backgroundSize: "24px 24px",
+                    backgroundImage: `
+                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+                  `,
+                  }}
+                ></div>
+                <div
+                  className="h-full w-full"
+                  style={{
+                    backgroundSize: "24px 24px",
+                    backgroundImage: `
+                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+                  `,
+                  }}
+                ></div>
+                <div
+                  aria-hidden
+                  className="h-full w-full"
+                  style={{
+                    backgroundSize: "24px 24px",
+                    backgroundImage: `
+                  linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)
+                  `,
+                  }}
+                ></div>
+              </div>
+            </div>
+
+            <div className="absolute right-0">
+              <div className="w-80 h-80 bg-zinc-50 -z-10 mask-[radial-gradient(circle,rgba(255,255,255,0.08)_10%,transparent_70%)]">
+              </div>
+            </div>
+
+            <div className="text-xl font-bold">
+              +1 Año de exp
+            </div>
+          </div>
           {/* <div className="bg-orange-400 size-96 mask-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,transparent_60%)] skew-12"></div> */}
         </div>
 
-      </main>
+      </main >
 
       <main className="h-svh px-10">
 
@@ -159,7 +290,7 @@ export default function Home() {
       </div> */}
       {/* [writing-mode:vertical-lr] */}
 
-    </div>
+    </div >
   );
 }
 

@@ -321,6 +321,15 @@ body {
   mask-image: linear-gradient(to top, transparent, black --value(integer, [])px, black calc(100% - --value(integer, [])px), transparent);
 }
 
+@property --speed {
+  syntax: "*";
+  inherits: true;
+}
+
+@utility speed-* {
+  --speed: --value(integer)s;
+}
+
 .marquee-track-x {
   width: max-content;
   animation: marquee-move-text-x var(--speed, 10s) linear infinite var(--direction, forwards);
@@ -449,4 +458,58 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: #404040 transparent;
+}
+
+@utility narratory-* {
+  &::before {
+    content: "";
+    z-index: 30;
+    position: absolute;
+    background-color: white;
+    clip-path: polygon(0px 0px, 0px --value(integer)px, --value(integer)px calc(--value(integer)px / 2), calc(--value(integer)px - 1px) calc((--value(integer)px / 2) - 1px), 1px calc(--value(integer)px - 1px), 1px 0px);
+    height: --value(integer)px;
+    width: --value(integer)px;
+  }
+
+  &::after {
+    content: "";
+    z-index: 20;
+    position: absolute;
+    background-color: inherit;
+    clip-path: polygon(0px 0px, 0px --value(integer)px, --value(integer)px calc(--value(integer)px / 2));
+    height: --value(integer)px;
+    width: --value(integer)px;
+  }
+}
+
+
+@utility narratory-large-* {
+  &::before {
+    content: "";
+    z-index: 30;
+    position: absolute;
+    background-color: white;
+    /* clip-path: polygon(1% 0%, 1% 99%, 100% 49%); */
+    /* clip-path: polygon(0px 0px, 0px 20px, 20px 10px, 19px 9px, 1px 19px, 1px 0px); */
+    clip-path: polygon(0px 0px,
+        calc(--value(integer, [integer])px / 2) --modifier(integer, [integer])px,
+        --value(integer, [integer])px 0px,
+        calc(--value(integer, [integer])px - 1px) 0px,
+        calc(--value(integer, [integer])px / 2) calc(--modifier(integer, [integer])px - 1px),
+        1px 0px);
+    width: --value(integer, [integer])px;
+    height: --modifier(integer, [integer])px;
+  }
+
+  &::after {
+    content: "";
+    z-index: 20;
+    position: absolute;
+    background-color: inherit;
+    clip-path: polygon(0px 0px,
+        calc(--value(integer, [integer])px / 2) --modifier(integer, [integer])px,
+        --value(integer, [integer])px 0px);
+    width: --value(integer, [integer])px;
+    height: --modifier(integer, [integer])px;
+  }
 }

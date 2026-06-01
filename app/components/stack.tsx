@@ -1,5 +1,5 @@
 "use client";
-import { HTMLAttributes, JSX, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IsometricBox } from "./IsometricBox";
 
 export interface ISection {
