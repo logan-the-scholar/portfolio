@@ -75,7 +75,7 @@ export default function Stack() {
                 />
 
                 <div className="pl-7 pr-5 py-5 border flex-1 h-1/2 border-neutral-400 rounded-3xl ml-8 font-sans font-light text-lg mt-30">
-                    <div className="overflow-y-scroll pr-2 fadeout-vertical-5 w-full h-full">
+                    <div className="overflow-y-auto pr-2 fadeout-vertical-5 w-full h-full">
                         <div className={`transition-all duration-800 delay-0 bg-transparent top-0 ${clicked === "01" ? "opacity-100 select-auto z-0 delay-absolute" : "-z-10 duration-600! opacity-0 select-none absolute"}`}>
                             AAAAAAAAAAAAAAAAAA Lorem ipsum dolor sit, amet consectetur adipisicing elit. A praesentium, impedit odit enim vero voluptatum repellat dolorem eius inventore earum laboriosam temporibus corporis blanditiis fugiat esse iusto quidem, dolorum molestias?
                         </div>

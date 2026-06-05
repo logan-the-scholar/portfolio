@@ -255,16 +255,9 @@ body {
   --z-size: --value(integer)px;
 }
 
-.cube {
-  /* width: 0px;
-  height: 0px; */
-}
-
 .face {
   transform-origin: 0 0;
   position: absolute;
-  /* width: 100px;
-  height: 100px; */
 }
 
 .front {
@@ -291,6 +284,63 @@ body {
   transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(68px, -131px);
 }
 
+
+@property --grid-size {
+  syntax: "*";
+  inherits: true;
+}
+
+@utility iso-grid-size-* {
+  --grid-size: --value(integer);
+}
+
+@utility iso-isobox-x-* {
+  --x-size: calc(--value(integer)px * var(--grid-size));
+
+}
+
+@utility iso-isobox-y-* {
+  --y-size: calc(--value(integer)px * var(--grid-size));
+}
+
+@utility iso-isobox-z-* {
+  --z-size: calc(--value(integer)px * var(--grid-size));
+}
+
+@utility iso-coords-x-* {
+  /* top: calc((var(--x-size) - (var(--grid-size) * 1px)) * -1); */
+  top: calc(((var(--x-size) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
+}
+
+@utility iso-coords-y-* {
+  left: calc(((var(--x-size) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
+}
+
+.iso-normal {
+  transform: scaleY(1.1574) translate(0px, 0px) skewX(30deg) rotate(30deg);
+}
+
+.iso-front {
+  height: var(--y-size);
+  width: var(--z-size);
+
+  transform: rotate(150deg) skewX(-30deg) translate(0px, 0px) scaleY(0.864);
+}
+
+.iso-top {
+  height: var(--z-size);
+  width: var(--x-size);
+
+  transform: rotate(390deg) skew(-30deg) translate(0px, 0px) scaleY(0.864);
+}
+
+.iso-side {
+  height: var(--x-size);
+  width: var(--y-size);
+
+  transform: rotate(270deg) skewX(-30deg) scaleY(0.864) translate(0px, 0px);
+}
+
 .normal {
   width: fit-content;
   height: fit-content;
@@ -299,26 +349,16 @@ body {
   transform: skew(0deg) translate(0px, 0px) scale(0.864);
 }
 
-/* .wrapper {
-  padding: 2.8rem 0px;
-  width: 100%;
-  color: white;
-  font-size: 2rem;
-  } */
-
-/* .marquee-text p {
-    border: 1px solid white;
-    background-color: #141414;
-    border-radius: 999px;
-    padding: 1rem 2.5rem;
-  } */
-
 @utility fadeout-horizontal-* {
   mask-image: linear-gradient(to right, transparent, black --value(integer, [])px, black calc(100% - --value(integer, [])px), transparent);
 }
 
 @utility fadeout-vertical-* {
   mask-image: linear-gradient(to top, transparent, black --value(integer, [])px, black calc(100% - --value(integer, [])px), transparent);
+}
+
+@utility fadeout-right-* {
+  mask-image: linear-gradient(to left, transparent, black --value(integer, [])px);
 }
 
 @property --speed {

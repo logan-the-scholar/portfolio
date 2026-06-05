@@ -34,8 +34,7 @@ export const IsometricBox: React.FC<{ data_id: string, section: IsoBoxSection, c
                 // setEmpty(false);
                 setClicked((e.currentTarget.dataset.id as string));
             }}
-            className={`h-[10%] w-[10%] transition-all duration-800 
-absolute font-heading-now-medium [&>div]:bg-[#181818] 
+            className={`h-[10%] w-[10%] transition-all duration-800 absolute font-heading-now-medium [&>div]:bg-[#181818] 
 [&>div]:p-0.5 [&>div>div]:bg-neutral-800 ${clicked === data_id ?
                     "" :
                     `cursor-pointer hover:[&>div>div]:m-1 [&>div>div]:ease-in-out [&>div>div]:transition-all [&>div>div]:duration-700 ${className}`}`}

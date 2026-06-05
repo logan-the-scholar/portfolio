@@ -17,15 +17,14 @@ export default function Home() {
               <span className="max-w-fit cursor-pointer h-fit">{"Historia"}</span>
               <span className="max-w-fit cursor-pointer h-fit">{"About"}</span> */}
               <div className="h-full content-center">
-                {/* BORDE CIRCULAR A CUADRADO EN TRANSITION??? */}
-                <button
+                {/* <button
                   className="text-base px-3 py-2 border rounded-2xl border-zinc-50 font-semibold cursor-pointer bg-zinc-900 hover:bg-zinc-50 hover:text-zinc-900 transition-all delay-200 ease-in-out shadow-solid-5/5"
                 >
                   <span className="font-bold mr-1">{"-> "}</span>
                   <span className="">
                     Contact Me
                   </span>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -71,7 +70,7 @@ export default function Home() {
 
           <div className="flex-1 h-full content-center px-20">
             {/* <div className="font-extrabold text-9xl col-span-1 w-fit h-fit">*</div> */}
-            <div className="font-heading-now-medium tracking-wide text-[110px] mb-25 w-fit flex flex-col items-start">
+            <div className="font-heading-now-medium tracking-wide text-[110px] mb-18 w-fit flex flex-col items-start">
               <h1 className="font-bold leading-14">
                 {"FULL-STACK"}
                 {/* <span>{"<"}</span> */}
@@ -132,11 +131,11 @@ export default function Home() {
                 >
                   <path d="M10.83 2.38a2 2 0 0 1 2.34 0l8 5.74a2 2 0 0 1 .73 2.25l-3.04 9.26a2 2 0 0 1-1.9 1.37H7.04a2 2 0 0 1-1.9-1.37L2.1 10.37a2 2 0 0 1 .73-2.25z" />
                 </svg> */}
-              <div className="font-sans bg-background text-zinc-300 text-[16px] font-light w-4/5 ml-8">
+              <div className="pl-4 py-3 font-sans rounded-4xl bg-background text-zinc-300 text-[16px] font-light w-4/5 ml-4">
 
                 <div className="float-left mr-4 relative">
                   <Image className="rounded-full w-14 h-14" src={profile} alt={"Profile image from github"} />
-                  <div className="absolute -z-10 w-53 h-53 rounded-l-full border-b border-l border-[rgb(255,255,255,0.2)] -top-12 -left-25">
+                  <div className="absolute -z-10 w-53 h-53 fadeout-right-50 rounded-l-full border border-[rgb(255,255,255,0.1)] -top-12 -left-25">
                   </div>
 
                   <div className="border bg-background group hover:bg-zinc-300 hover:text-background border-zinc-300 text-lg absolute text-nowrap left-[100%] text-inherit -top-[105%] px-1.5 py-2 rounded-2xl select-none cursor-pointer">
@@ -195,12 +194,69 @@ export default function Home() {
           </div>
 
           <div className="h-full flex-1 relative">
-            <div
-              className="-z-10 absolute fadeout-vertical-15 w-full h-full face front origin-center isobox-z-505 isobox-y-505 rotate-60"
+            <div className="left-1/2 bottom-[156px] face front origin-center isobox-z-313 isobox-y-313 rotate-60">
+              <div className="fadeout-horizontal-15 h-[313px] w-[313px] absolute">
+                <div
+                  className="fadeout-vertical-15 h-full w-full"
+                  style={{
+                    backgroundSize: "24px 24px",
+                    backgroundImage: `
+                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+                  `,
+                  }}>
+                  <div className="h-2/3 w-2/3 top-1/6 left-1/6 rounded-full border-dashed border border-[rgb(255,255,255,0.15)] absolute"></div>
+                </div>
+              </div>
+              <div className="h-[313px] w-[313px] relative">
+
+                {/* BOX 1 */}
+                <div className="[&>div]:bg-background select-none cursor-pointer iso-coords-x-3 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-7">
+                  <div className="face iso-top">
+                    <div className="w-full h-full text-center border-amber-600 opacity-60"></div>
+                  </div>
+                  <div className="face iso-side">
+                    <div className="w-full h-full text-center text-amber-300 border-amber-500 opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold">Java</div>
+                  </div>
+                  <div className="face iso-front">
+                    <div className="w-full h-full text-center border-amber-400 opacity-60"></div>
+                  </div>
+                </div>
+
+                {/* BOX 2 */}
+                <div className="[&>div]:bg-background select-none cursor-pointer iso-coords-x-6 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-3">
+                  <div className="face iso-top">
+                    <div className="w-full h-full text-center border-purple-600 opacity-60"></div>
+                  </div>
+                  <div className="face iso-side">
+                    <div className="w-full h-full text-center text-purple-300 border-purple-500 opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold">CSS</div>
+                  </div>
+                  <div className="face iso-front">
+                    <div className="w-full h-full text-center border-purple-400 opacity-60"></div>
+                  </div>
+                </div>
+
+                {/* BOX 3 */}
+                <div className="[&>div]:bg-background select-none cursor-pointer iso-coords-x-9 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-6">
+                  <div className="face iso-top">
+                    <div className="w-full h-full text-center border-lime-600 opacity-60"></div>
+                  </div>
+                  <div className="face iso-side">
+                    <div className="w-full h-full text-center text-lime-300 border-lime-500 opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold">Javascript</div>
+                  </div>
+                  <div className="face iso-front">
+                    <div className="w-full h-full text-center border-lime-400 opacity-60"></div>
+                  </div>
+                  <div className="absolute normal w-5! h-5! bg-amber-600!">o</div>
+                </div>
+              </div>
+            </div>
+            {/* <div
+              className="left-2/3 -z-10 absolute fadeout-vertical-15 w-full h-full face front origin-center isobox-z-241 isobox-y-697 rotate-60"
             >
               <div className="speed-30 marquee-track-y transition-all relative w-full! h-max!">
                 <div
-                  className="h-[505px] w-[505px]"
+                  className="h-[697px] w-[241px]"
                   style={{
                     backgroundSize: "24px 24px",
                     backgroundImage: `
@@ -211,50 +267,48 @@ export default function Home() {
                 ></div>
                 <div
                   aria-hidden
-                  className="h-[505px] w-[505px]"
+                  className="h-[697px] w-[241px]"
                   style={{
                     backgroundSize: "24px 24px",
                     backgroundImage: `
                   linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
                   linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
-                  `,
-                  }}
-                ></div>
-                <div
-                  className="h-full w-full"
-                  style={{
-                    backgroundSize: "24px 24px",
-                    backgroundImage: `
-                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
-                  `,
-                  }}
-                ></div>
-                <div
-                  aria-hidden
-                  className="h-full w-full"
-                  style={{
-                    backgroundSize: "24px 24px",
-                    backgroundImage: `
-                  linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)
                   `,
                   }}
                 ></div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="absolute right-0">
+            {/* <div className="absolute right-0">
               <div className="w-80 h-80 bg-zinc-50 -z-10 mask-[radial-gradient(circle,rgba(255,255,255,0.08)_10%,transparent_70%)]">
               </div>
+            </div> */}
+
+            <div className="h-full flex justify-end">
+              <div className="mr-5">
+                <div className="text-4xl font-heading-now-medium pb-1 text-neutral-300">
+                  <span className="font-literata border px-2 text-3xl text-neutral-200 border-neutral-600 mr-2">+1</span>Año de experiencia
+                </div>
+                <div className="flex justify-center">
+                  <span className="font-literata px-2 text-neutral-400 text-[16px] border-neutral-700">Antioquia, Colombia</span>
+                </div>
+                <div className="border-neutral-700 border-r h-2/5 w-3/4 mt-6 font-literata grid grid-rows-3 items-center justify-items-end">
+                  {/* <div className="relative w-fit h-fit border-y transition-all bg-background hover:px-4 cursor-pointer pl-1 pr-2 left-0.5 duration-700 border-neutral-700 flex pb-1">
+                    work
+                  </div>
+                  <div className="relative w-fit h-fit border-y transition-all bg-background hover:px-4 cursor-pointer pl-1 pr-2 left-0.5 duration-700 border-neutral-700 pb-1 flex">
+                    contact
+                  </div>
+                  <div className="relative w-fit h-fit border-y transition-all bg-background hover:px-4 cursor-pointer pl-1 pr-2 left-0.5 duration-700 border-neutral-700 pb-1 flex">
+                    github
+                  </div> */}
+                </div>
+              </div>
             </div>
 
-            <div className="text-xl font-bold">
-              +1 Año de exp
-            </div>
           </div>
           {/* <div className="bg-orange-400 size-96 mask-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,transparent_60%)] skew-12"></div> */}
-        </div>
+        </div >
 
       </main >
 
