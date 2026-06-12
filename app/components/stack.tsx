@@ -42,8 +42,26 @@ export default function Stack() {
     }, [clicked]);
 
     return (
-        <div className="w-full h-full py-10 font-anton flex">
-            <div className="w-1/2 h-[90%] my-auto"></div>
+        <div className="w-full h-full py-10 flex">
+
+            <div className="w-1/2 h-[90%] my-auto relative">
+                <div className="face iso-front left-1/2 isobox-z-313 isobox-y-313 rotate-60 relative bottom-0">
+                    <div className="fadeout-horizontal-15 h-[313px] w-[313px] absolute">
+                        <div
+                            className="fadeout-vertical-15 h-full w-full"
+                            style={{
+                                backgroundSize: "24px 24px",
+                                backgroundImage: `
+                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+                  `,
+                            }}>
+                            {/* <div className="h-2/3 w-2/3 top-1/6 left-1/6 rounded-full border-dashed border border-[rgb(255,255,255,0.15)] absolute"></div> */}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div className="relative w-1/2 h-[90%] my-auto p-5 px-8">
                 <div className="-rotate-20 top-3 absolute right-full mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg"

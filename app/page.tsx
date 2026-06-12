@@ -1,15 +1,114 @@
+"use client";
 import Stack from "./components/stack";
 import Image from "next/image";
 import profile from "../public/profile.jpg";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [loaded, setLoaded] = useState(false);
+  // const [animGraphs, setAnimGraphs] = useState(false);
+  // const GRAPH_CICLE = 8000;
+
+  const sequence = [
+    [6, 1, 5, 1],
+    [5, 1, 3, 1],
+    [3, 1, 7, 1]
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const sequence = [
+      { value: 0, duration: 10000 },
+      { value: 1, duration: 1500 },
+      { value: 2, duration: 10000 },
+      { value: 3, duration: 1500 },
+    ];
+
+    let index = 0;
+    let timeout: NodeJS.Timeout;
+
+    const next = () => {
+      const current = sequence[index];
+
+      setCurrent(current.value);
+
+      index = (index + 1) % sequence.length;
+
+      timeout = setTimeout(next, current.duration);
+    };
+
+    next();
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+
+  // useEffect(() => {
+  //   let index = 0;
+
+  //   const interval = setInterval(() => {
+  //     index = (index + 1) % sequence.length;
+  //     setSize(sequence[index]);
+  //   }, 1000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  useEffect(() => {
+    Promise.all([
+      document.fonts.ready,
+      new Promise<void>((resolve) => {
+        if (document.readyState === "complete") {
+          resolve();
+        } else {
+          window.addEventListener("load", () => resolve(), { once: true });
+        }
+      })
+    ]).then(() => {
+      setTimeout(() => {
+        setLoaded(true);
+      }, 300);
+    });
+  }, []);
+
+
+  // useEffect(() => {
+  //   let graph_timeout: NodeJS.Timeout;
+
+  //   const graphAnimation = () => {
+  //     setAnimGraphs(false);
+  //     setTimeout(() => setAnimGraphs(true), GRAPH_CICLE / 2);
+
+  //     graph_timeout = setTimeout(graphAnimation, GRAPH_CICLE);
+  //   };
+
+  //   graphAnimation();
+
+  //   return () => {
+  //     clearTimeout(graph_timeout);
+  //   }
+  // }, []);
+
   return (
     <div className="text-sm min-h-screen font-sans w-full relative overflow-hidden">
-      {/* w-[95%] px-4 mx-auto bg-[#1e1e20] h-15 my-2 */}
       <nav className="w-full absolute">
         <div className="w-[95%] h-15 mx-auto px-4 my-2 flex justify-between">
           <div className="h-13 my-auto border rounded-full bg-zinc-50 border-zinc-50 w-13 items-center select-none text-center text-background text-4xl font-serif font-bold underline underline-offset-2">
             ƒ
+          </div>
+          <div className="flex items-center  justify-center">
+            <span className="flex font-literata ml-5 px-2 text-neutral-400 text-[14px] border-neutral-700">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                width="18" height="18"
+                viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                className="lucide lucide-map-pin-icon lucide-map-pin"
+              >
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Antioquia, Colombia</span>
           </div>
           <div className="flex flex-1 justify-end">
             <div className="text-neutral-200 items-center flex w-xl text-lg select-none font-console justify-end [&>span]:hover:underline">
@@ -69,11 +168,10 @@ export default function Home() {
           </div> */}
 
           <div className="flex-1 h-full content-center px-20">
-            {/* <div className="font-extrabold text-9xl col-span-1 w-fit h-fit">*</div> */}
             <div className="font-heading-now-medium tracking-wide text-[110px] mb-18 w-fit flex flex-col items-start">
+              {/* <div className="absolute h-full w-px border-[rgb(255,255,255,0.1)] -top-4 -left-5 border-l border-dashed"></div> */}
               <h1 className="font-bold leading-14">
                 {"FULL-STACK"}
-                {/* <span>{"<"}</span> */}
               </h1>
               <h1 className="text-[78px] font-bold ml-5">
                 DEVELOPER
@@ -81,40 +179,6 @@ export default function Home() {
                   {/* <span className="font-normal text-4xl">Machine Learning</span> */}
                   <span className="text-4xl mr-2">{" &"}</span>
                   DATA ANALIST
-                  {/* <span className="relative fadeout-horizontal-5 w-full overflow-clip">
-                    <span className="marquee-track-x flex transition-all relative pl-1 gap-2 w-full">
-                      <p>
-                        DATA ANALIST
-                      </p>
-                      <p>
-                        DATA AAAA
-                      </p>
-                      <p>
-                        DATA BBBB
-                      </p>
-                      <p>
-                        DATA CCCC
-                      </p>
-                      <p>
-                        DATA DDDD
-                      </p>
-                      <p aria-hidden>
-                        DATA ANALIST
-                      </p>
-                      <p aria-hidden>
-                        DATA AAAA
-                      </p>
-                      <p aria-hidden>
-                        DATA BBBB
-                      </p>
-                      <p aria-hidden>
-                        DATA CCCC
-                      </p>
-                      <p aria-hidden>
-                        DATA DDDD
-                      </p>
-                    </span>
-                  </span> */}
                 </span>
               </h1>
 
@@ -131,12 +195,16 @@ export default function Home() {
                 >
                   <path d="M10.83 2.38a2 2 0 0 1 2.34 0l8 5.74a2 2 0 0 1 .73 2.25l-3.04 9.26a2 2 0 0 1-1.9 1.37H7.04a2 2 0 0 1-1.9-1.37L2.1 10.37a2 2 0 0 1 .73-2.25z" />
                 </svg> */}
-              <div className="pl-4 py-3 font-sans rounded-4xl bg-background text-zinc-300 text-[16px] font-light w-4/5 ml-4">
+              <div className="pl-4 py-3 font-literata rounded-4xl bg-background text-zinc-300 text-[16px] font-light w-4/5 ml-4">
 
                 <div className="float-left mr-4 relative">
                   <Image className="rounded-full w-14 h-14" src={profile} alt={"Profile image from github"} />
-                  <div className="absolute -z-10 w-53 h-53 fadeout-right-50 rounded-l-full border border-[rgb(255,255,255,0.1)] -top-12 -left-25">
+                  <div className="absolute -z-10 w-53 h-53 border-r-0 rounded-l-full border-dashed border border-[rgb(255,255,255,0.1)] -top-12 -left-25">
+                    {/* <div
+                      className="origin-bottom-right absolute z-10 -top-14 -left-10 w-24 h-30 rounded-br-full border-dashed border-b border-r border-[rgb(255,255,255,0.1)]"
+                    ></div> */}
                   </div>
+
 
                   <div className="border bg-background group hover:bg-zinc-300 hover:text-background border-zinc-300 text-lg absolute text-nowrap left-[100%] text-inherit -top-[105%] px-1.5 py-2 rounded-2xl select-none cursor-pointer">
                     <div className="w-3.5 h-5 absolute -left-[6px] -bottom-[13px] origin-center rotate-40">
@@ -179,22 +247,11 @@ export default function Home() {
                 y romper estandares. Imparable creativo y amante de los videojuegos, la literatura, artes visuales y la musica.
               </div>
             </div>
-            {/* <div className="border rounded-bl-full rounded-tr-full border-amber-50"></div> */}
-            {/* className={`ebox-5/neutral-800 ebox-line-neutral-500 relative h-full border border-neutral-500 w-full ${perspective === 0 ? "ebox-re-perspective-1/2000" : perspective === 1 ? "ebox-perspective-1/500" : perspective === 2 ? "ebox-re-top-perspective-1/2000" : "ebox-top-perspective-1/500"}`} */}
-
-            {/* <div className="flex justify-center -mt-5"> */}
-            <div className="bg-background text-base font-normal text-left content-start col-start-2 col-end-4 -mt-4 mr-7">
-              {/* Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore, quis aliquid! Suscipit incidunt at maxime
-              deserunt. */}
-              {/* inventore vero minima aliquid quasi, ullam voluptatem soluta ipsum assumenda vel temporibus nihil iste. */}
-            </div>
-
-            {/* <div className="h-1/6 w-full"></div> */}
-            {/* </div> */}
           </div>
 
           <div className="h-full flex-1 relative">
-            <div className="left-1/2 bottom-[156px] face front origin-center isobox-z-313 isobox-y-313 rotate-60">
+            <div className="left-1/2 bottom-[176px] face front origin-center isobox-z-313 isobox-y-313 rotate-60">
+
               <div className="fadeout-horizontal-15 h-[313px] w-[313px] absolute">
                 <div
                   className="fadeout-vertical-15 h-full w-full"
@@ -208,102 +265,198 @@ export default function Home() {
                   <div className="h-2/3 w-2/3 top-1/6 left-1/6 rounded-full border-dashed border border-[rgb(255,255,255,0.15)] absolute"></div>
                 </div>
               </div>
+
               <div className="h-[313px] w-[313px] relative">
 
                 {/* BOX 1 */}
-                <div className="[&>div]:bg-background select-none cursor-pointer iso-coords-x-3 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-7">
+                <div
+                  className={`[&>div]:bg-background [&>div]:duration-800 [&>div>div]:duration-800 [&>div>div]:transition-all select-none cursor-pointer 
+iso-coords-x-3 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border-2 ease-in-out 
+iso-isobox-z-1 iso-isobox-y-1`}
+                  style={{ "--x-size": sequence[0][current] } as React.CSSProperties}
+                >
                   <div className="face iso-top">
-                    <div className="w-full h-full text-center border-amber-600 opacity-60"></div>
+                    <div className={`w-full h-full text-center opacity-60 ${sequence[0][current] === 1 ?
+                      "bg-amber-50" : sequence[0][current] === sequence[0][0] ?
+                        "border-red-500" : "border-cyan-500"}`}>
+                    </div>
                   </div>
                   <div className="face iso-side">
-                    <div className="w-full h-full text-center text-amber-300 border-amber-500 opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold">Java</div>
+                    <div className={`w-full h-full text-center opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold ${sequence[0][current] === 1 ?
+                      "bg-amber-50 text-transparent" : sequence[0][current] === sequence[0][0] ?
+                        "text-red-300 border-red-400" : "text-cyan-200 border-cyan-400"}`}>
+                      {current === 0 || current === 1 ? "Java" : "React"}
+                    </div>
                   </div>
                   <div className="face iso-front">
-                    <div className="w-full h-full text-center border-amber-400 opacity-60"></div>
+                    <div className={`w-full h-full text-center opacity-60 ${sequence[0][current] === 1 ?
+                      "bg-amber-50" : sequence[0][current] === sequence[0][0] ?
+                        "border-red-300" : "border-cyan-300"}`}>
+                    </div>
                   </div>
                 </div>
 
                 {/* BOX 2 */}
-                <div className="[&>div]:bg-background select-none cursor-pointer iso-coords-x-6 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-3">
+                <div className={`[&>div]:bg-background select-none cursor-pointer iso-coords-x-6 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all 
+[&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border-2 iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-3 [&>div>div]:duration-800 
+[&>div>div]:transition-all`}
+                  style={{ "--x-size": sequence[1][current] } as React.CSSProperties}
+                >
                   <div className="face iso-top">
-                    <div className="w-full h-full text-center border-purple-600 opacity-60"></div>
+                    <div className={`w-full h-full text-center opacity-60 ${sequence[1][current] === 1 ?
+                      "border-amber-50" : sequence[1][current] === sequence[1][0] ?
+                        "border-amber-400" : "border-pink-500"}`}>
+                    </div>
                   </div>
                   <div className="face iso-side">
-                    <div className="w-full h-full text-center text-purple-300 border-purple-500 opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold">CSS</div>
+                    <div className={`w-full h-full text-center opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold ${sequence[1][current] === 1 ?
+                      "border-amber-50 text-transparent" : sequence[1][current] === sequence[1][0] ?
+                        "text-amber-300 border-amber-300" : "text-pink-200 border-pink-400"}`}>
+                      {current === 0 || current === 1 ? "Redux" : "CSS"}
+                    </div>
                   </div>
                   <div className="face iso-front">
-                    <div className="w-full h-full text-center border-purple-400 opacity-60"></div>
+                    <div className={`w-full h-full text-center opacity-60 ${sequence[1][current] === 1 ?
+                      "border-amber-50" : sequence[1][current] === sequence[1][0] ?
+                        "border-amber-200" : "border-pink-300"}`}>
+                    </div>
                   </div>
                 </div>
 
                 {/* BOX 3 */}
-                <div className="[&>div]:bg-background select-none cursor-pointer iso-coords-x-9 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-6">
+                <div className={`[&>div]:bg-background select-none cursor-pointer iso-coords-x-9 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all 
+[&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border-2 iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-6
+[&>div>div]:duration-800 [&>div>div]:transition-all`}
+                  style={{ "--x-size": sequence[2][current] } as React.CSSProperties}
+                >
                   <div className="face iso-top">
-                    <div className="w-full h-full text-center border-lime-600 opacity-60"></div>
+                    <div className={`w-full h-full text-center opacity-60 ${sequence[2][current] === 1 ?
+                      "bg-amber-50" : sequence[2][current] === sequence[2][0] ?
+                        "border-lime-600" : "border-yellow-400"}`}>
+                    </div>
                   </div>
                   <div className="face iso-side">
-                    <div className="w-full h-full text-center text-lime-300 border-lime-500 opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold">Javascript</div>
+                    <div className={`w-full h-full text-center opacity-60 [writing-mode:vertical-lr] text-[18px] font-bold ${sequence[2][current] === 1 ?
+                      "bg-amber-50 text-transparent" : sequence[2][current] === sequence[2][0] ?
+                        "text-lime-300 border-lime-500" : "text-yellow-200 border-yellow-300"}`}>
+                      {current === 0 || current === 1 ? "SQL" : "Typescript"}
+                    </div>
                   </div>
                   <div className="face iso-front">
-                    <div className="w-full h-full text-center border-lime-400 opacity-60"></div>
+                    <div className={`w-full h-full text-center opacity-60 ${sequence[2][current] === 1 ?
+                      "bg-amber-50" : sequence[2][current] === sequence[2][0] ?
+                        "border-lime-400" : "border-yellow-200"}`}>
+                    </div>
                   </div>
-                  <div className="absolute normal w-5! h-5! bg-amber-600!">o</div>
+                </div>
+
+
+                {/* NODELINKS */}
+                <div className="iso-grid-size-24">
+                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-b border-r w-18 h-24 absolute z-40 plane-coords-x-0 
+plane-coords-y-6 rounded-br-full ${sequence[0][current] === 1 ?
+                      "border-amber-50" : sequence[0][current] === sequence[0][0] ?
+                        "border-red-400" : "border-cyan-300"}`}>
+                    <div className="origin-center absolute bottom-full right-0 text-nowrap text-xs">
+                      50626 lines
+                    </div>
+                  </div>
+
+                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-b border-r w-[72px] h-6 absolute z-40 plane-coords-x-6 
+plane-coords-y-6 rounded-br-full ${sequence[1][current] === 1 ?
+                      "border-amber-50" : sequence[1][current] === sequence[1][0] ?
+                        "border-amber-400" : "border-pink-300"}`}>
+                    <div className={`transition-colors duration-800 border-dashed border-t border-l h-6 w-[96px] absolute bottom-full left-full rounded-tl-full 
+${sequence[1][current] === 1 ?
+                        "border-amber-50" : sequence[1][current] === sequence[1][0] ?
+                          "border-amber-400" : "border-pink-300"
+                      }`}>
+                      <div className="origin-center absolute bottom-full left-full -rotate-90">
+                        21048
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-t border-r w-12 h-20 absolute z-40 plane-coords-x-10 
+plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
+                      "border-amber-50" : sequence[2][current] === sequence[2][0] ?
+                        "border-lime-400" : "border-yellow-400"
+                    }`}>
+                    <div className="absolute top-full left-full text-xs">
+                      1291048
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            {/* <div
-              className="left-2/3 -z-10 absolute fadeout-vertical-15 w-full h-full face front origin-center isobox-z-241 isobox-y-697 rotate-60"
-            >
-              <div className="speed-30 marquee-track-y transition-all relative w-full! h-max!">
-                <div
-                  className="h-[697px] w-[241px]"
-                  style={{
-                    backgroundSize: "24px 24px",
-                    backgroundImage: `
-                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
-                  `,
-                  }}
-                ></div>
-                <div
-                  aria-hidden
-                  className="h-[697px] w-[241px]"
-                  style={{
-                    backgroundSize: "24px 24px",
-                    backgroundImage: `
-                  linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-                  linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
-                  `,
-                  }}
-                ></div>
-              </div>
-            </div> */}
 
-            {/* <div className="absolute right-0">
-              <div className="w-80 h-80 bg-zinc-50 -z-10 mask-[radial-gradient(circle,rgba(255,255,255,0.08)_10%,transparent_70%)]">
-              </div>
-            </div> */}
 
-            <div className="h-full flex justify-end">
-              <div className="mr-5">
-                <div className="text-4xl font-heading-now-medium pb-1 text-neutral-300">
-                  <span className="font-literata border px-2 text-3xl text-neutral-200 border-neutral-600 mr-2">+1</span>Año de experiencia
-                </div>
-                <div className="flex justify-center">
-                  <span className="font-literata px-2 text-neutral-400 text-[16px] border-neutral-700">Antioquia, Colombia</span>
-                </div>
-                <div className="border-neutral-700 border-r h-2/5 w-3/4 mt-6 font-literata grid grid-rows-3 items-center justify-items-end">
-                  {/* <div className="relative w-fit h-fit border-y transition-all bg-background hover:px-4 cursor-pointer pl-1 pr-2 left-0.5 duration-700 border-neutral-700 flex pb-1">
-                    work
+            <div className="h-full">
+              {/* <div className="flex w-full justify-end">
+                <div className="relative font-heading-now-small text-4xl fadeout-horizontal-5 w-1/2 overflow-clip h-15 text-neutral-400">
+                  <div className="marquee-track-x flex transition-all absolute border-y border-neutral-700 pl-1 gap-2 w-full">
+                    <p>
+                      DATA ANALISIS
+                    </p>
+                    <p>
+                      API SERVICE
+                    </p>
+                    <p>
+                      SPRINGBOOT
+                    </p>
+                    <p>
+                      REACT
+                    </p>
+                    <p>
+                      REDUX
+                    </p>
+                    <p>
+                      TYPESCRIPT
+                    </p>
+
+                    <p aria-hidden>
+                      DATA ANALISIS
+                    </p>
+                    <p aria-hidden>
+                      API SERVICE
+                    </p>
+                    <p aria-hidden>
+                      SPRINGBOOT
+                    </p>
+                    <p aria-hidden>
+                      REACT
+                    </p>
+                    <p aria-hidden>
+                      REDUX
+                    </p>
+                    <p aria-hidden>
+                      TYPESCRIPT
+                    </p>
                   </div>
-                  <div className="relative w-fit h-fit border-y transition-all bg-background hover:px-4 cursor-pointer pl-1 pr-2 left-0.5 duration-700 border-neutral-700 pb-1 flex">
-                    contact
+                </div>
+              </div> */}
+
+              <div className="w-full flex justify-end">
+                <div className="cursor-pointer text-4xl transition-all duration-700 delay-100 relative font-heading-now-medium text-background mr-5 h-fit px-1.5 hover:text-neutral-300 hover:[&>div]:rounded-bl-3xl hover:[&>div>div]:duration-700! hover:[&>div]:duration-700! hover:[&>div]:rotate-45 hover:[&>div]:size-7 hover:[&>div]:-left-10 hover:[&>div]:top-1/4 hover:[&>div>div]:opacity-100">
+                  <span className="animate-underline overflow-hidden relative after:bg-neutral-300 after:duration-700 after:delay-200">
+                    Contacto
+                  </span>
+                  <div className="absolute w-full h-full bg-neutral-300 top-0 left-0 transition-all duration-700 delay-100 -z-10">
+                    <div className="absolute w-3/4 h-3/4 -bottom-px -left-px transition-all duration-300 opacity-0 border-neutral-300 bg-background"></div>
                   </div>
-                  <div className="relative w-fit h-fit border-y transition-all bg-background hover:px-4 cursor-pointer pl-1 pr-2 left-0.5 duration-700 border-neutral-700 pb-1 flex">
-                    github
+                </div>
+                <div className="mr-5 circular-8 relative">
+                  <div className="absolute w-full h-[calc(100%-4px)] top-0.5 circular-9 -z-10"></div>
+                  <div className="text-4xl font-heading-now-medium pb-1 text-neutral-300 z-30">
+                    <span className="font-literata px-2 text-3xl border-neutral-600">+1</span>Año de experiencia
+                  </div>
+                  {/* <div className="border-neutral-700 border-r h-[270%] w-3/4 mt-0 font-literata grid grid-rows-3 items-center justify-items-end">
                   </div> */}
                 </div>
               </div>
+
+              {/* <div className="size-16 spiked-box"></div> */}
+
             </div>
 
           </div>

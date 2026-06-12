@@ -229,30 +229,33 @@ body {
 
 
 @property --x-size {
-  syntax: "*";
+  syntax: "<number>";
   inherits: true;
+  initial-value: 0;
 }
 
 @property --y-size {
-  syntax: "*";
+  syntax: "<number>";
   inherits: true;
+  initial-value: 0;
 }
 
 @property --z-size {
-  syntax: "*";
+  syntax: "<number>";
   inherits: true;
+  initial-value: 0;
 }
 
 @utility isobox-x-* {
-  --x-size: --value(integer)px;
+  --x-size: --value(integer);
 }
 
 @utility isobox-y-* {
-  --y-size: --value(integer)px;
+  --y-size: --value(integer);
 }
 
 @utility isobox-z-* {
-  --z-size: --value(integer)px;
+  --z-size: --value(integer);
 }
 
 .face {
@@ -261,24 +264,24 @@ body {
 }
 
 .front {
-  height: var(--y-size);
-  width: var(--z-size);
+  height: calc(var(--y-size) * 1px);
+  width: calc(var(--z-size) * 1px);
   -ms-transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
   -webkit-transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
   transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
 }
 
 .top {
-  height: var(--z-size);
-  width: var(--x-size);
+  height: calc(var(--z-size) * 1px);
+  width: calc(var(--x-size) * 1px);
   -ms-transform: rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);
   -webkit-transform: rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);
   transform: rotate(210deg) skew(-30deg) translate(-200px, -60px) scaleY(0.864);
 }
 
 .side {
-  height: var(--x-size);
-  width: var(--y-size);
+  height: calc(var(--x-size) * 1px);
+  width: calc(var(--y-size) * 1px);
   -ms-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(68px, -131px);
   -webkit-transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(68px, -131px);
   transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(68px, -131px);
@@ -295,49 +298,69 @@ body {
 }
 
 @utility iso-isobox-x-* {
-  --x-size: calc(--value(integer)px * var(--grid-size));
-
+  --x-size: --value(integer);
+  /* --x-size: calc(--value(integer)px * var(--grid-size)); */
 }
 
 @utility iso-isobox-y-* {
-  --y-size: calc(--value(integer)px * var(--grid-size));
+  --y-size: --value(integer);
+  /* --y-size: calc(--value(integer)px * var(--grid-size)); */
 }
 
 @utility iso-isobox-z-* {
-  --z-size: calc(--value(integer)px * var(--grid-size));
+  --z-size: --value(integer);
+  /* --z-size: calc(--value(integer)px * var(--grid-size)); */
 }
 
+/*TODO CAMBIAR NOMBRE D ESTOS DOS A OFFSET */
 @utility iso-coords-x-* {
-  /* top: calc((var(--x-size) - (var(--grid-size) * 1px)) * -1); */
-  top: calc(((var(--x-size) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
+  top: calc((((var(--x-size) * var(--grid-size) * 1px) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
 }
 
 @utility iso-coords-y-* {
-  left: calc(((var(--x-size) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
+  left: calc((((var(--x-size) * var(--grid-size) * 1px) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
+}
+
+@utility plane-coords-x-* {
+  top: calc(--value(integer)px * var(--grid-size));
+}
+
+@utility plane-coords-y-* {
+  left: calc(--value(integer)px * var(--grid-size));
 }
 
 .iso-normal {
   transform: scaleY(1.1574) translate(0px, 0px) skewX(30deg) rotate(30deg);
 }
 
-.iso-front {
-  height: var(--y-size);
-  width: var(--z-size);
+.iso-on-iso-normal {
+  -ms-transform: skew(0deg) translate(0px, 0px) scale(1.2028) rotate(30deg);
+  -webkit-transform: skew(0deg) translate(0px, 0px) scale(1.2028) rotate(30deg);
+  transform: skew(0deg) translate(0px, 0px) scale(1.2028) rotate(30deg);
+}
 
+
+.iso-front {
+  height: calc((var(--y-size) * var(--grid-size) * 1px));
+  width: calc((var(--z-size) * var(--grid-size) * 1px));
+  -ms-transform: rotate(150deg) skewX(-30deg) translate(0px, 0px) scaleY(0.864);
+  -webkit-transform: rotate(150deg) skewX(-30deg) translate(0px, 0px) scaleY(0.864);
   transform: rotate(150deg) skewX(-30deg) translate(0px, 0px) scaleY(0.864);
 }
 
 .iso-top {
-  height: var(--z-size);
-  width: var(--x-size);
-
+  height: calc((var(--z-size) * var(--grid-size) * 1px));
+  width: calc((var(--x-size) * var(--grid-size) * 1px));
+  -ms-transform: rotate(390deg) skew(-30deg) translate(0px, 0px) scaleY(0.864);
+  -webkit-transform: rotate(390deg) skew(-30deg) translate(0px, 0px) scaleY(0.864);
   transform: rotate(390deg) skew(-30deg) translate(0px, 0px) scaleY(0.864);
 }
 
 .iso-side {
-  height: var(--x-size);
-  width: var(--y-size);
-
+  height: calc((var(--x-size) * var(--grid-size) * 1px));
+  width: calc((var(--y-size) * var(--grid-size) * 1px));
+  -ms-transform: rotate(270deg) skewX(-30deg) scaleY(0.864) translate(0px, 0px);
+  -webkit-transform: rotate(270deg) skewX(-30deg) scaleY(0.864) translate(0px, 0px);
   transform: rotate(270deg) skewX(-30deg) scaleY(0.864) translate(0px, 0px);
 }
 
@@ -347,6 +370,10 @@ body {
   -ms-transform: skew(0deg) translate(0px, 0px) scale(0.864);
   -webkit-transform: skew(0deg) translate(0px, 0px) scale(0.864);
   transform: skew(0deg) translate(0px, 0px) scale(0.864);
+}
+
+@utility calculated-nodelink-* {
+  width: calc(200px - calc(var(--x-size) * var(--grid-size) * 1px));
 }
 
 @utility fadeout-horizontal-* {
@@ -359,6 +386,10 @@ body {
 
 @utility fadeout-right-* {
   mask-image: linear-gradient(to left, transparent, black --value(integer, [])px);
+}
+
+@utility fadeout-left-* {
+  mask-image: linear-gradient(to right, transparent, black --value(integer, [])px);
 }
 
 @property --speed {
@@ -553,3 +584,221 @@ body {
     height: --modifier(integer, [integer])px;
   }
 }
+
+@property --objective-size {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@utility anim-graph-shrink-* {
+  --objective-size: --modifier(integer, [integer]);
+  --x-size: --modifier(integer, [integer]);
+  animation: graph-shrink --value(integer, [integer])ms ease-in-out forwards;
+}
+
+@keyframes graph-shrink {
+  1% {
+    --x-size: 1;
+  }
+
+  50% {
+    --x-size: 1;
+  }
+
+  100% {
+    --x-size: var(--objective-size);
+  }
+}
+
+/* @utility anim-graph-shrink-e-* {
+  --objective-size: --modifier(integer, [integer]);
+  --x-size: 5;
+  animation: graph-shrink-e --value(integer, [integer])ms ease-in-out forwards;
+}
+
+@keyframes graph-shrink-e {
+  1% {
+    --x-size: 5;
+  }
+
+  50% {
+    --x-size: 1;
+  }
+
+  100% {
+    --x-size: 7;
+  }
+} */
+
+
+.animate-underline {
+  overflow: hidden;
+  display: block;
+}
+
+.animate-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  opacity: 0;
+  /* transition: opacity 600ms, transform 600ms; */
+  transform: translate3d(-100%, 0, 0);
+}
+
+.animate-underline:hover::after,
+.animate-underline:focus::after {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.circular-7 {
+  padding: 0 0.4em;
+  line-height: 1.6em;
+  -webkit-mask:
+    radial-gradient(farthest-side at right, #0000 97%, #000) 0 0 /var(--d, 0px) 0.8em repeat-y,
+    radial-gradient(farthest-side at left, #0000 97%, #000) 100% 0 /var(--d, 0px) 0.8em repeat-y,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  transition: 0.3s, background 0.3s 0.3s, color 0.3s 0.3s;
+}
+
+.circular-7:hover {
+  --d: 0.4em;
+  background: #fff;
+  color: #000;
+  transition: 0.3s 0.3s, background 0.3s, color 0.3s;
+}
+
+.circular-8 {
+  -webkit-mask:
+    radial-gradient(farthest-side at bottom, #0000 87%, #e1e1e1) top /1.6em var(--d, 0px) repeat-x,
+    radial-gradient(farthest-side at top, #0000 87%, #e1e1e1) bottom /1.6em var(--d, 0px) repeat-x,
+    linear-gradient(#e1e1e1 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  transition: 0.3s, background 0.3s 0.3s, color 0.3s 0.3s;
+
+}
+
+.circular-9 {
+  -webkit-mask:
+    radial-gradient(farthest-side at bottom, #0000 87%, var(--background)) top /1.6em var(--d, 0px) repeat-x,
+    radial-gradient(farthest-side at top, #0000 87%, var(--background)) bottom /1.6em var(--d, 0px) repeat-x,
+    linear-gradient(var(--background) 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  transition: 0.3s, background 0.3s 0.3s, color 0.3s 0.3s;
+
+}
+
+.circular-8:hover {
+  --d: 0.4em;
+  background: #e1e1e1;
+  color: #fff;
+  transition: 0.3s 0.3s, background 0.3s, color 0.3s;
+}
+
+.circular-9:hover {
+  --d: 0.4em;
+  background: var(--background);
+  color: #fff;
+  transition: 0.3s 0.3s, background 0.3s, color 0.3s;
+}
+
+.morphing-3 {
+  padding: 8px;
+  box-shadow: 0 0 0px 80px var(--c, #0000);
+  background: var(--c, #0000);
+  transition: 0.3s 0.3s, clip-path 0.3s;
+  clip-path: polygon(0 0, 20% 0, 30% 0, 40% 0, 50% 0, 60% 0, 70% 0, 80% 0, 100% 0, 100% 25%, 100% 50%, 100% 75%, 100% 100%, 80% 100%, 70% 100%, 60% 100%, 50% 100%, 40% 100%, 30% 100%, 20% 100%, 0 100%, 0 75%, 0 50%, 0 25%);
+}
+
+.morphing-3:hover {
+  --c: #000;
+  color: #fff;
+  transition: 0.3s, clip-path 0.4s 0.3s;
+  clip-path: polygon(-30px -30px, 20% 0, 20% -20px, 40% 0, 50% -30px, 60% 0, 80% -20px, 80% 0, calc(100% + 30px) -30px, 100% 25%, calc(100% + 25px) 50%, 100% 75%, calc(100% + 30px) calc(100% + 30px), 80% 100%, 80% calc(100% + 20px), 60% 100%, 50% calc(100% + 30px), 40% 100%, 20% calc(100% + 20px), 20% 100%, -30px calc(100% + 30px), 0 75%, -25px 50%, 0 25%);
+}
+
+.spiked-rectangle {
+  padding: 8px;
+  box-shadow: 0 0 0px 80px #bbf451;
+  background: #bbf451;
+  transition: 0.3s 0.3s, clip-path 0.3s;
+  clip-path: polygon(-15px -15px,
+      20% 0,
+      20% -20px,
+      40% 0,
+      50% -15px,
+      60% 0,
+      80% -20px,
+      80% 0,
+      calc(100% + 15px) -15px,
+      100% 25%,
+      calc(100% + 25px) 50%,
+      100% 75%,
+      calc(100% + 15px) calc(100% + 15px),
+      80% 100%,
+      80% calc(100% + 20px),
+      60% 100%,
+      50% calc(100% + 15px),
+      40% 100%,
+      20% calc(100% + 20px),
+      20% 100%,
+      -15px calc(100% + 15px),
+      0 75%,
+      -25px 50%,
+      0 25%);
+}
+
+.spiked-box {
+  padding: 8px;
+  box-shadow: 0 0 0px 80px #bbf451;
+  background: #bbf451;
+  transition: 0.3s 0.3s, clip-path 0.3s;
+  clip-path: polygon(-15px -15px,
+      20% 0,
+      20% -20px,
+      40% 0,
+      50% -15px,
+      60% 0,
+      80% -20px,
+      80% 0,
+      calc(100% + 15px) -15px,
+      /* calc(100% + 25px) 50%, */
+      100% 20%,
+      calc(100% + 20px) 20%,
+      100% 40%,
+      calc(100% + 15px) 50%,
+      100% 60%,
+      calc(100% + 20px) 80%,
+      100% 80%,
+      /* 100% 75%, */
+      calc(100% + 15px) calc(100% + 15px),
+      80% 100%,
+      80% calc(100% + 20px),
+      60% 100%,
+      50% calc(100% + 15px),
+      40% 100%,
+      20% calc(100% + 20px),
+      20% 100%,
+      -15px calc(100% + 15px),
+      /* 0 75%, */
+      0 80%,
+      -20px 80%,
+      0 60%,
+      -15px 50%,
+      0 40%,
+      -20px 20%,
+
+      0 20%,
+      /* -25px 50%, */
+      0 25%);
+}
+
+
