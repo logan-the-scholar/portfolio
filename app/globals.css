@@ -223,6 +223,10 @@ body {
   box-shadow: --modifier(integer, [integer])px --value(integer, [integer])px var(--tw-shadow-color);
 }
 
+@utility -shadow-solid-* {
+  box-shadow: calc(--modifier(integer, [integer]) * -1px) --value(integer, [integer])px var(--tw-shadow-color);
+}
+
 @utility text-shadow-solid-* {
   text-shadow: --modifier(integer, [integer])px --value(integer, [integer])px var(--tw-text-shadow-color);
 }
@@ -685,17 +689,6 @@ body {
 
 }
 
-.circular-9 {
-  -webkit-mask:
-    radial-gradient(farthest-side at bottom, #0000 87%, var(--background)) top /1.6em var(--d, 0px) repeat-x,
-    radial-gradient(farthest-side at top, #0000 87%, var(--background)) bottom /1.6em var(--d, 0px) repeat-x,
-    linear-gradient(var(--background) 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  transition: 0.3s, background 0.3s 0.3s, color 0.3s 0.3s;
-
-}
-
 .circular-8:hover {
   --d: 0.4em;
   background: #e1e1e1;
@@ -703,12 +696,55 @@ body {
   transition: 0.3s 0.3s, background 0.3s, color 0.3s;
 }
 
-.circular-9:hover {
-  --d: 0.4em;
-  background: var(--background);
-  color: #fff;
-  transition: 0.3s 0.3s, background 0.3s, color 0.3s;
+
+@property --circular-color {
+  syntax: "<color>";
+  inherits: false;
 }
+
+@utility circular-9-* {
+  --circular-color: --value(--color-*, [color]);
+  position: relative;
+  -webkit-mask:
+    radial-gradient(farthest-side at bottom, #0000 97%, --value(--color-*, [color])) top /calc(--modifier(integer, [integer])em * 0.1) var(--d, 0px) repeat-x,
+    radial-gradient(farthest-side at top, #0000 97%, --value(--color-*, [color])) bottom /calc(--modifier(integer, [integer])em * 0.1) var(--d, 0px) repeat-x,
+    linear-gradient(--value(--color-*, [color]) 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  transition: 0.3s, background 0.3s 0.3s, color 0.3s 0.3s;
+
+  &::after {
+    content: "";
+    z-index: -10;
+    height: calc(100% - 8px);
+    width: 100%;
+    top: 4px;
+    left: 0;
+    position: absolute;
+    -webkit-mask:
+      radial-gradient(farthest-side at bottom, #0000 97%, var(--color-background)) top /calc(--modifier(integer, [integer]) * 0.1em) var(--d, 0px) repeat-x,
+      radial-gradient(farthest-side at top, #0000 97%, var(--color-background)) bottom /calc(--modifier(integer, [integer]) * 0.1em) var(--d, 0px) repeat-x,
+      linear-gradient(var(--color-background) 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    transition: 0.3s, background 0.3s 0.4s, color 0.3s 0.4s;
+  }
+}
+
+@utility circular-9-animate-* {
+  --d: calc(--value(integer, [integer])em * 0.1);
+  background: var(--circular-color);
+  /* color: #fff; */
+  transition: 0.3s 0.3s, background 0.3s, color 0.3s;
+
+  &::after {
+    /* --d: calc(--value(integer, [integer])em * 0.1); */
+    background: var(--color-background);
+    /* color: #fff; */
+    transition: 0.3s 0.3s, background 0.3s, color 0.3s;
+  }
+}
+
 
 .morphing-3 {
   padding: 8px;
@@ -802,3 +838,84 @@ body {
 }
 
 
+@utility sides-1-* {
+  padding: 10px;
+  background:
+    linear-gradient(--value(--color-*, [color]) 0 0) 50% --modifier(integer, [integer])px,
+    linear-gradient(--value(--color-*, [color]) 0 0) --modifier(integer, [integer])px 50%,
+    linear-gradient(--value(--color-*, [color]) 0 0) 50% calc(100% - --modifier(integer, [integer])px),
+    linear-gradient(--value(--color-*, [color]) 0 0) calc(100% - --modifier(integer, [integer])px) 50%;
+  background-size: 0% 1px, 1px 0%;
+  background-repeat: no-repeat;
+  transition: 0.8s;
+}
+
+@utility sides-1-animate {
+  background-size: 100% 1px, 1px 100%;
+}
+
+.fancy-6 {
+  padding: 0 10px;
+  line-height: 1.4em;
+  border-radius: 50px;
+  background: radial-gradient(farthest-side, #000 98%, #0000) -1.4em 0/1.4em 1.4em,
+    linear-gradient(90deg, #000 calc(100% - 0.7em), #0000 0) left/0% 100%;
+  background-repeat: no-repeat;
+  transition: 0.3s;
+}
+
+.fancy-6:hover {
+  color: #fff;
+  background-size: 1.4em 1.4em, 100% 100%;
+  background-position: right, left;
+}
+
+
+@property --degree {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@utility conic-fill-* {
+  background: conic-gradient(from 120deg, --value(--color-*, [color]) calc(var(--degree, 0) * 1deg), #0000 0) 50% 50%/100% 100%;
+  background-repeat: no-repeat;
+}
+
+.anim-conic-fill-forwards {
+  --degree: 360;
+  animation: fill-up 3s ease-in-out forwards;
+}
+
+.anim-conic-fill-backwards {
+  --degree: 0;
+  animation: empty-up 3s ease-in-out forwards;
+}
+
+@keyframes empty-up {
+  from {
+    --degree: 0;
+  }
+
+  to {
+    --degree: 360;
+  }
+}
+
+@keyframes fill-up {
+  from {
+    --degree: 360;
+  }
+
+  to {
+    --degree: 0;
+  }
+}
+
+
+/* 
+asdasfas
+asdasfas
+asdasfas
+asdasfas
+asdasfas */

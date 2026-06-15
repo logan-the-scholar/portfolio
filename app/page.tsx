@@ -199,15 +199,16 @@ export default function Home() {
 
                 <div className="float-left mr-4 relative">
                   <Image className="rounded-full w-14 h-14" src={profile} alt={"Profile image from github"} />
-                  <div className="absolute -z-10 w-53 h-53 border-r-0 rounded-l-full border-dashed border border-[rgb(255,255,255,0.1)] -top-12 -left-25">
+                  <div className="-z-20 absolute w-52 h-52 -top-12 -left-25 border-r-0 rounded-l-full border-dashed border-2 border-neutral-700">
                     {/* <div
                       className="origin-bottom-right absolute z-10 -top-14 -left-10 w-24 h-30 rounded-br-full border-dashed border-b border-r border-[rgb(255,255,255,0.1)]"
                     ></div> */}
                   </div>
-
+                  <div className={`-z-10 absolute w-53 h-53 -top-12 -left-25 conic-fill-background ${true ? "anim-conic-fill-forwards" : "anim-conic-fill-backwards"}`}>
+                  </div>
 
                   <div className="border bg-background group hover:bg-zinc-300 hover:text-background border-zinc-300 text-lg absolute text-nowrap left-[100%] text-inherit -top-[105%] px-1.5 py-2 rounded-2xl select-none cursor-pointer">
-                    <div className="w-3.5 h-5 absolute -left-[6px] -bottom-[13px] origin-center rotate-40">
+                    <div className="w-3.5 h-5 absolute -left-[6px] -bottom-[13px] origin-center rotate-40 ">
                       <svg
                         className="z-10 absolute group-hover:text-zinc-300"
                         width="100%"
@@ -437,17 +438,19 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
               </div> */}
 
               <div className="w-full flex justify-end">
-                <div className="cursor-pointer text-4xl transition-all duration-700 delay-100 relative font-heading-now-medium text-background mr-5 h-fit px-1.5 hover:text-neutral-300 hover:[&>div]:rounded-bl-3xl hover:[&>div>div]:duration-700! hover:[&>div]:duration-700! hover:[&>div]:rotate-45 hover:[&>div]:size-7 hover:[&>div]:-left-10 hover:[&>div]:top-1/4 hover:[&>div>div]:opacity-100">
+                <div className="text-4xl font-heading-now-medium sides-1-neutral-300/0 hover:sides-1-animate px-2 py-3">
+                  <span className="z-30 text-neutral-300!">Contacto</span>
+                </div>
+                {/* <div className="cursor-pointer text-4xl transition-all duration-700 delay-100 relative font-heading-now-medium text-background mr-5 h-fit px-1.5 hover:text-neutral-300 hover:[&>div]:rounded-bl-3xl hover:[&>div>div]:duration-700! hover:[&>div]:duration-700! hover:[&>div]:rotate-45 hover:[&>div]:size-7 hover:[&>div]:-left-10 hover:[&>div]:top-1/4 hover:[&>div>div]:opacity-100">
                   <span className="animate-underline overflow-hidden relative after:bg-neutral-300 after:duration-700 after:delay-200">
                     Contacto
                   </span>
                   <div className="absolute w-full h-full bg-neutral-300 top-0 left-0 transition-all duration-700 delay-100 -z-10">
                     <div className="absolute w-3/4 h-3/4 -bottom-px -left-px transition-all duration-300 opacity-0 border-neutral-300 bg-background"></div>
                   </div>
-                </div>
-                <div className="mr-5 circular-8 relative">
-                  <div className="absolute w-full h-[calc(100%-4px)] top-0.5 circular-9 -z-10"></div>
-                  <div className="text-4xl font-heading-now-medium pb-1 text-neutral-300 z-30">
+                </div> */}
+                <div className="mr-5">
+                  <div className="text-4xl font-heading-now-medium pb-1 z-30 border border-neutral-300">
                     <span className="font-literata px-2 text-3xl border-neutral-600">+1</span>Año de experiencia
                   </div>
                   {/* <div className="border-neutral-700 border-r h-[270%] w-3/4 mt-0 font-literata grid grid-rows-3 items-center justify-items-end">

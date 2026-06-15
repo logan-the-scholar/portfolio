@@ -34,18 +34,17 @@ export const IsometricBox: React.FC<{ data_id: string, section: IsoBoxSection, c
                 // setEmpty(false);
                 setClicked((e.currentTarget.dataset.id as string));
             }}
-            className={`h-[10%] w-[10%] transition-all duration-800 absolute font-heading-now-medium [&>div]:bg-[#181818] 
-[&>div]:p-0.5 [&>div>div]:bg-neutral-800 ${clicked === data_id ?
+            className={`h-[10%] w-[10%] transition-all duration-800 absolute font-heading-now-medium ${clicked === data_id ?
                     "" :
                     `cursor-pointer hover:[&>div>div]:m-1 [&>div>div]:ease-in-out [&>div>div]:transition-all [&>div>div]:duration-700 ${className}`}`}
         >
             <div className={`duration-800 face ${clicked === data_id ? "normal" : "front"}`}>
                 <div className="w-full h-full"></div>
             </div>
-            <div className={`transition-all duration-800 face ${clicked === data_id ? "-left-[130%] normal mt-25" : "side"}`}>
-                <div className={`relative ${clicked === data_id ? "h-fit w-fit bg-background!" : "w-full h-full"}`}>
+            <div className={`transition-all duration-800 face ${clicked === data_id ? "normal mt-25" : "side"}`}>
+                <div className={`relative transition-all duration-800 ${clicked === data_id ? "-left-1/2 h-fit w-fit bg-transparent!" : "w-full h-full"}`}>
                     <div className={`overflow-clip duration-700 origin-center h-full text-3xl relative ${clicked === data_id ? "w-fit h-fit" : "-rotate-180 fadeout-vertical-5"}`}>
-                        <div className={`text-end transition-all text-neutral-300 duration-800 gap-1 relative origin-top-left flex ${clicked === data_id ? "left-0 h-fit w-fit nose py-4 px-2 gap-6" : "left-full pl-1 rotate-90 marquee-track-x"}`}>
+                        <div className={`text-end transition-all text-zinc-300 duration-800 gap-1 relative origin-top-left flex ${clicked === data_id ? "left-0 h-fit w-fit nose py-4 px-2 gap-6 border-r border-neutral-600" : "left-full pl-1 rotate-90 marquee-track-x"}`}>
                             {ContentMapper(data_id, section.list)}
                         </div>
                     </div>
