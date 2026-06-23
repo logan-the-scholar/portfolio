@@ -19,9 +19,9 @@ export default function Home() {
 
   useEffect(() => {
     const sequence = [
-      { value: 0, duration: 10000 },
+      { value: 0, duration: 7000 },
       { value: 1, duration: 1500 },
-      { value: 2, duration: 10000 },
+      { value: 2, duration: 7000 },
       { value: 3, duration: 1500 },
     ];
 
@@ -199,18 +199,18 @@ export default function Home() {
 
                 <div className="float-left mr-4 relative">
                   <Image className="rounded-full w-14 h-14" src={profile} alt={"Profile image from github"} />
-                  <div className="-z-20 absolute w-52 h-52 -top-12 -left-25 border-r-0 rounded-l-full border-dashed border-2 border-neutral-700">
+                  <div className="-z-20 absolute w-48 h-48 -top-12 -left-17 border-r-0 rounded-l-full border-dashed border-2 border-neutral-700 conic-fill anim-conic-fill-forwards">
                     {/* <div
                       className="origin-bottom-right absolute z-10 -top-14 -left-10 w-24 h-30 rounded-br-full border-dashed border-b border-r border-[rgb(255,255,255,0.1)]"
                     ></div> */}
                   </div>
-                  <div className={`-z-10 absolute w-53 h-53 -top-12 -left-25 conic-fill-background ${true ? "anim-conic-fill-forwards" : "anim-conic-fill-backwards"}`}>
-                  </div>
+                  {/* <div className={`-z-10 absolute w-53 h-53 -top-12 -left-25 conic-fill-background ${true ? "anim-conic-fill-forwards" : "anim-conic-fill-backwards"}`}>
+                  </div> */}
 
-                  <div className="border bg-background group hover:bg-zinc-300 hover:text-background border-zinc-300 text-lg absolute text-nowrap left-[100%] text-inherit -top-[105%] px-1.5 py-2 rounded-2xl select-none cursor-pointer">
+                  <div className="transition-colors duration-600 border bg-background group hover:bg-zinc-300 hover:text-background border-zinc-300 text-lg absolute text-nowrap left-[100%] text-inherit -top-[105%] px-1.5 py-2 rounded-2xl select-none">
                     <div className="w-3.5 h-5 absolute -left-[6px] -bottom-[13px] origin-center rotate-40 ">
                       <svg
-                        className="z-10 absolute group-hover:text-zinc-300"
+                        className="transition-colors duration-600 z-10 absolute group-hover:text-zinc-300"
                         width="100%"
                         height="100%"
                         viewBox="0 0 100 100"
@@ -225,7 +225,7 @@ export default function Home() {
                         />
                       </svg>
                       <svg
-                        className="group-hover:text-zinc-300 absolute text-background"
+                        className="transition-colors duration-600 group-hover:text-zinc-300 absolute text-background"
                         width="100%"
                         height="100%"
                         viewBox="0 0 100 100"
@@ -272,7 +272,7 @@ export default function Home() {
                 {/* BOX 1 */}
                 <div
                   className={`[&>div]:bg-background [&>div]:duration-800 [&>div>div]:duration-800 [&>div>div]:transition-all select-none cursor-pointer 
-iso-coords-x-3 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border-2 ease-in-out 
+offset-coords-x-3 offset-coords-y-5 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border ease-in-out 
 iso-isobox-z-1 iso-isobox-y-1`}
                   style={{ "--x-size": sequence[0][current] } as React.CSSProperties}
                 >
@@ -298,8 +298,8 @@ iso-isobox-z-1 iso-isobox-y-1`}
                 </div>
 
                 {/* BOX 2 */}
-                <div className={`[&>div]:bg-background select-none cursor-pointer iso-coords-x-6 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all 
-[&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border-2 iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-3 [&>div>div]:duration-800 
+                <div className={`[&>div]:bg-background select-none cursor-pointer offset-coords-x-6 offset-coords-y-5 iso-normal iso-grid-size-24 transition-all 
+[&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-3 [&>div>div]:duration-800 
 [&>div>div]:transition-all`}
                   style={{ "--x-size": sequence[1][current] } as React.CSSProperties}
                 >
@@ -325,8 +325,8 @@ iso-isobox-z-1 iso-isobox-y-1`}
                 </div>
 
                 {/* BOX 3 */}
-                <div className={`[&>div]:bg-background select-none cursor-pointer iso-coords-x-9 iso-coords-y-5 iso-normal iso-grid-size-24 transition-all 
-[&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border-2 iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-6
+                <div className={`[&>div]:bg-background select-none cursor-pointer offset-coords-x-9 offset-coords-y-5 iso-normal iso-grid-size-24 transition-all 
+[&>div]:transition-all [&>div]:duration-800 duration-800 absolute [&>div>div]:border iso-isobox-z-1 iso-isobox-y-1 iso-isobox-x-6
 [&>div>div]:duration-800 [&>div>div]:transition-all`}
                   style={{ "--x-size": sequence[2][current] } as React.CSSProperties}
                 >
@@ -437,9 +437,18 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
                 </div>
               </div> */}
 
-              <div className="w-full flex justify-end">
-                <div className="text-4xl font-heading-now-medium sides-1-neutral-300/0 hover:sides-1-animate px-2 py-3">
-                  <span className="z-30 text-neutral-300!">Contacto</span>
+              <div className="w-full flex justify-center">
+                <div className="transition-colors duration-600 text-4xl font-heading-now-medium px-2 py-1 -mt-5 border border-zinc-300 rounded-3xl mr-15 flex select-none cursor-pointer hover:bg-zinc-300 text-neutral-300 hover:text-background [&>div]:text-background hover:[&>div]:text-zinc-300 hover:[&>div]:bg-background">
+                  {/* <div className="text-4xl font-heading-now-medium sides-1-neutral-300/0 hover:sides-1-animate px-2 py-3"> */}
+                  <div className="transition-colors duration-600 w-9 h-9 rounded-full self-center mr-2 bg-zinc-300">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="35" height="35" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      className="transition-colors duration-600 lucide lucide-arrow-down-left-icon lucide-arrow-down-left">
+                      <path d="M17 7 7 17" /><path d="M17 17H7V7" />
+                    </svg>
+                  </div>
+                  <span className="">Contacto</span>
                 </div>
                 {/* <div className="cursor-pointer text-4xl transition-all duration-700 delay-100 relative font-heading-now-medium text-background mr-5 h-fit px-1.5 hover:text-neutral-300 hover:[&>div]:rounded-bl-3xl hover:[&>div>div]:duration-700! hover:[&>div]:duration-700! hover:[&>div]:rotate-45 hover:[&>div]:size-7 hover:[&>div]:-left-10 hover:[&>div]:top-1/4 hover:[&>div>div]:opacity-100">
                   <span className="animate-underline overflow-hidden relative after:bg-neutral-300 after:duration-700 after:delay-200">
@@ -450,9 +459,9 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
                   </div>
                 </div> */}
                 <div className="mr-5">
-                  <div className="text-4xl font-heading-now-medium pb-1 z-30 border border-neutral-300">
-                    <span className="font-literata px-2 text-3xl border-neutral-600">+1</span>Año de experiencia
-                  </div>
+                  {/* <div className="text-4xl font-heading-now-medium pb-1 z-30">
+                    <span className="font-literata px-2 text-3xl border border-neutral-600 mr-1.5">+1</span>Año de experiencia
+                  </div> */}
                   {/* <div className="border-neutral-700 border-r h-[270%] w-3/4 mt-0 font-literata grid grid-rows-3 items-center justify-items-end">
                   </div> */}
                 </div>
@@ -460,6 +469,12 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
 
               {/* <div className="size-16 spiked-box"></div> */}
 
+            </div>
+
+            <div className="select-none face iso-side relative text-7xl text-[#303030] font-heading-now-medium right-3/10 top-3/10">
+              <div className="w-fit h-fit rotate-90 text-nowrap leading-16 border-b pb-3 pl-3 pr-3">
+                <span className="text-[110px] font-sans"><span className="font-heading-now-medium">+</span>1</span>Año de <br /> Experiencia
+              </div>
             </div>
 
           </div>

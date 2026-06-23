@@ -267,6 +267,14 @@ body {
   position: absolute;
 }
 
+.test-front {
+  height: 50%;
+  width: 50%;
+  -ms-transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
+  -webkit-transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
+  transform: rotate(-30deg) skewX(-30deg) translate(130px, 172px) scaleY(0.864);
+}
+
 .front {
   height: calc(var(--y-size) * 1px);
   width: calc(var(--z-size) * 1px);
@@ -316,24 +324,41 @@ body {
   /* --z-size: calc(--value(integer)px * var(--grid-size)); */
 }
 
-/*TODO CAMBIAR NOMBRE D ESTOS DOS A OFFSET */
-@utility iso-coords-x-* {
-  top: calc((((var(--x-size) * var(--grid-size) * 1px) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
+@utility offset-coords-x-* {
+  top: calc((((var(--x-size) * var(--grid-size, 1) * 1px) - (var(--grid-size, 1) * 1px)) * -1) + (--value(integer)px * var(--grid-size, 1)));
 }
 
-@utility iso-coords-y-* {
-  left: calc((((var(--x-size) * var(--grid-size) * 1px) - (var(--grid-size) * 1px)) * -1) + (--value(integer)px * var(--grid-size)));
+@utility offset-coords-y-* {
+  left: calc((((var(--x-size) * var(--grid-size, 1) * 1px) - (var(--grid-size, 1) * 1px)) * -1) + (--value(integer)px * var(--grid-size, 1)));
 }
 
 @utility plane-coords-x-* {
-  top: calc(--value(integer)px * var(--grid-size));
+  top: calc(--value(integer)px * var(--grid-size, 1));
 }
 
 @utility plane-coords-y-* {
-  left: calc(--value(integer)px * var(--grid-size));
+  left: calc(--value(integer)px * var(--grid-size, 1));
+}
+
+@utility -plane-coords-x-* {
+  top: calc((--value(integer) * var(--grid-size, 1)) * -1px);
+}
+
+@utility -plane-coords-y-* {
+  left: calc((--value(integer) * var(--grid-size, 1)) * -1px);
+}
+
+@utility w-grid-sized-* {
+  width: calc(--value(integer)px * var(--grid-size, 1));
+}
+
+@utility h-grid-sized-* {
+  height: calc(--value(integer)px * var(--grid-size, 1));
 }
 
 .iso-normal {
+  -ms-transform: scaleY(1.1574) translate(0px, 0px) skewX(30deg) rotate(30deg);
+  -webkit-transform: scaleY(1.1574) translate(0px, 0px) skewX(30deg) rotate(30deg);
   transform: scaleY(1.1574) translate(0px, 0px) skewX(30deg) rotate(30deg);
 }
 
@@ -345,7 +370,7 @@ body {
 
 
 .iso-front {
-  height: calc((var(--y-size) * var(--grid-size) * 1px));
+  height: calc((var(--y-size) * var(--grid-size, 1) * 1px));
   width: calc((var(--z-size) * var(--grid-size) * 1px));
   -ms-transform: rotate(150deg) skewX(-30deg) translate(0px, 0px) scaleY(0.864);
   -webkit-transform: rotate(150deg) skewX(-30deg) translate(0px, 0px) scaleY(0.864);
@@ -353,16 +378,16 @@ body {
 }
 
 .iso-top {
-  height: calc((var(--z-size) * var(--grid-size) * 1px));
-  width: calc((var(--x-size) * var(--grid-size) * 1px));
+  height: calc((var(--z-size) * var(--grid-size, 1) * 1px));
+  width: calc((var(--x-size) * var(--grid-size, 1) * 1px));
   -ms-transform: rotate(390deg) skew(-30deg) translate(0px, 0px) scaleY(0.864);
   -webkit-transform: rotate(390deg) skew(-30deg) translate(0px, 0px) scaleY(0.864);
   transform: rotate(390deg) skew(-30deg) translate(0px, 0px) scaleY(0.864);
 }
 
 .iso-side {
-  height: calc((var(--x-size) * var(--grid-size) * 1px));
-  width: calc((var(--y-size) * var(--grid-size) * 1px));
+  height: calc((var(--x-size) * var(--grid-size, 1) * 1px));
+  width: calc((var(--y-size) * var(--grid-size, 1) * 1px));
   -ms-transform: rotate(270deg) skewX(-30deg) scaleY(0.864) translate(0px, 0px);
   -webkit-transform: rotate(270deg) skewX(-30deg) scaleY(0.864) translate(0px, 0px);
   transform: rotate(270deg) skewX(-30deg) scaleY(0.864) translate(0px, 0px);
@@ -394,6 +419,10 @@ body {
 
 @utility fadeout-left-* {
   mask-image: linear-gradient(to right, transparent, black --value(integer, [])px);
+}
+
+.fade-half {
+  mask-image: linear-gradient(135deg, black 0 53%, transparent 53% 100%);
 }
 
 @property --speed {
@@ -877,10 +906,15 @@ body {
   initial-value: 0;
 }
 
-@utility conic-fill-* {
-  background: conic-gradient(from 120deg, --value(--color-*, [color]) calc(var(--degree, 0) * 1deg), #0000 0) 50% 50%/100% 100%;
-  background-repeat: no-repeat;
+.conic-fill {
+  mask-image: conic-gradient(from 120deg, transparent 0deg calc(var(--degree, 0) * 1deg), #000 calc(var(--degree, 0) * 1deg) 360deg);
 }
+
+/* calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg) */
 
 .anim-conic-fill-forwards {
   --degree: 360;
