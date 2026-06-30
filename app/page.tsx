@@ -168,12 +168,12 @@ export default function Home() {
           </div> */}
 
           <div className="flex-1 h-full content-center px-20">
-            <div className="font-heading-now-medium tracking-wide text-[110px] mb-18 w-fit flex flex-col items-start">
+            <div className="font-heading-now-small tracking-wide text-[110px] mb-20 w-fit flex flex-col items-start leading-22">
               {/* <div className="absolute h-full w-px border-[rgb(255,255,255,0.1)] -top-4 -left-5 border-l border-dashed"></div> */}
-              <h1 className="font-bold leading-14">
+              <h1 className="font-bold">
                 {"FULL-STACK"}
               </h1>
-              <h1 className="text-[78px] font-bold ml-5">
+              <h1 className="font-bold ml-5">
                 DEVELOPER
                 <span className="font-normal font-heading-now-small text-5xl">
                   {/* <span className="font-normal text-4xl">Machine Learning</span> */}
@@ -199,7 +199,7 @@ export default function Home() {
 
                 <div className="float-left mr-4 relative">
                   <Image className="rounded-full w-14 h-14" src={profile} alt={"Profile image from github"} />
-                  <div className="-z-20 absolute w-48 h-48 -top-12 -left-17 border-r-0 rounded-l-full border-dashed border-2 border-neutral-700 conic-fill anim-conic-fill-forwards">
+                  <div className="-z-20 absolute w-48 h-48 -top-12 -left-17 border-r-0 rounded-l-full border-dashed border-b-0 border-2 border-neutral-700 conic-fill anim-conic-fill-forwards">
                     {/* <div
                       className="origin-bottom-right absolute z-10 -top-14 -left-10 w-24 h-30 rounded-br-full border-dashed border-b border-r border-[rgb(255,255,255,0.1)]"
                     ></div> */}
@@ -471,9 +471,14 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
 
             </div>
 
-            <div className="select-none face iso-side relative text-7xl text-[#303030] font-heading-now-medium right-3/10 top-3/10">
-              <div className="w-fit h-fit rotate-90 text-nowrap leading-16 border-b pb-3 pl-3 pr-3">
-                <span className="text-[110px] font-sans"><span className="font-heading-now-medium">+</span>1</span>Año de <br /> Experiencia
+            <div className="select-none face iso-side relative text-7xl text-neutral-500 transition-colors duration-700 ease-in-out hover:text-neutral-500 font-heading-now-medium right-5/20 top-4/10">
+              <div className="w-fit h-fit rotate-90 text-nowrap leading-16 pb-3 pl-3 pr-3">
+                <div className="pr-20 border-b">
+                  <span className="font-sans mr-1 tracking-tighter"><span className="font-heading-now-medium">+</span>1</span>Año de
+                </div>
+                <div className="ml-9 pl-1 border-b-0">
+                  experiencia
+                </div>
               </div>
             </div>
 
@@ -483,7 +488,7 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
 
       </main >
 
-      <main className="h-svh px-10">
+      <main className="h-svh px-10 mt-10">
 
         {/* <div className="flex items-center">
           <div className="w-1/2">
@@ -507,6 +512,9 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
         </div> */}
 
         <Stack></Stack>
+      </main>
+      <main className="h-svh px-10 mt-10">
+
       </main>
 
       {/* <div

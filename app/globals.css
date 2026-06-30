@@ -792,8 +792,8 @@ body {
 
 .spiked-rectangle {
   padding: 8px;
-  box-shadow: 0 0 0px 80px #bbf451;
-  background: #bbf451;
+  box-shadow: 0 0 0px 80px #303030;
+  background: #303030;
   transition: 0.3s 0.3s, clip-path 0.3s;
   clip-path: polygon(-15px -15px,
       20% 0,
@@ -820,11 +820,15 @@ body {
       -25px 50%,
       0 25%);
 }
-
+/* calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg)
+calc(var(--degree, 0) * 1deg) */
 .spiked-box {
   padding: 8px;
-  box-shadow: 0 0 0px 80px #bbf451;
-  background: #bbf451;
+  box-shadow: 0 0 0px 80px #303030;
+  background: #303030;
   transition: 0.3s 0.3s, clip-path 0.3s;
   clip-path: polygon(-15px -15px,
       20% 0,
@@ -910,11 +914,7 @@ body {
   mask-image: conic-gradient(from 120deg, transparent 0deg calc(var(--degree, 0) * 1deg), #000 calc(var(--degree, 0) * 1deg) 360deg);
 }
 
-/* calc(var(--degree, 0) * 1deg)
-calc(var(--degree, 0) * 1deg)
-calc(var(--degree, 0) * 1deg)
-calc(var(--degree, 0) * 1deg)
-calc(var(--degree, 0) * 1deg) */
+
 
 .anim-conic-fill-forwards {
   --degree: 360;
