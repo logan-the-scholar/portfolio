@@ -34,9 +34,9 @@ export const IsometricBox: React.FC<{ data_id: string, section: IsoBoxSection, c
                 // setEmpty(false);
                 setClicked((e.currentTarget.dataset.id as string));
             }}
-            className={`h-[10%] w-[10%] transition-all duration-800 absolute font-heading-now-medium ${clicked === data_id ?
-                "" :
-                `select-none cursor-pointer hover:[&>div>div]:m-1 [&>div>div]:ease-in-out ${className}`}`}
+            className={`z-40 h-[10%] w-[10%] transition-all duration-700 absolute font-heading-now-medium ${clicked === data_id ?
+                "opacity-0" :
+                `select-none cursor-pointer ${className}`}`}
         >
             <div className={`transition-all duration-800 face ${clicked === data_id ? "normal" : "front"}`}>
                 <div className={`transition-all duration-800 w-full h-full ${clicked === data_id ? "bg-transparent!" : ""}`}></div>
@@ -52,7 +52,7 @@ export const IsometricBox: React.FC<{ data_id: string, section: IsoBoxSection, c
             </div>
             <div className={`transition-all duration-1000 text-nowrap face content-center ${clicked === data_id ? "delay-200 iso-side translate-x-[30dvw] -translate-y-[60px] z-20 text-neutral-500 select-none" : "top"}`}>
                 <div className={`transition-all duration-1000 w-full h-full ${clicked === data_id ? "delay-200 bg-transparent! rotate-90 transition-transform" : ""}`}>
-                    <span className={`leading-12 duration-1000 tracking-wider inline-block font-bold ${clicked === data_id ? "delay-200 px-5 py-2 text-6xl tracking-wide!" : " rotate-180 text-5xl"}`}>
+                    <span className={`leading-12 duration-1000 tracking-wider inline-block font-bold ${clicked === data_id ? "delay-200 px-5 py-2 text-6xl tracking-wide!" : "rotate-180 text-5xl w-full text-center"}`}>
                         {section.title}
                         <div className={`transition-all duration-800 ${clicked === data_id ? "w-full h-30 border-r border-t mt-2 delay-800" : "w-0 h-0"}`}>
                         </div>

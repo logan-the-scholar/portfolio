@@ -12,7 +12,7 @@ export interface IsoBoxSection {
 }
 
 export default function Stack() {
-    const [clicked, setClicked] = useState<string>("01");
+    const [clicked, setClicked] = useState<string>("00");
     const [empty, setEmpty] = useState<boolean>(false);
 
     const frontend_stack: IsoBoxSection = {
@@ -55,6 +55,29 @@ export default function Stack() {
         console.log(clicked);
     }, [clicked]);
 
+    const ContentMapper = (content: IsoBoxSection) => {
+        return (
+            <>
+                {
+                    content.list.map((a) => {
+                        return (
+                            <p className={`transition-all delay-400 duration-300 origin-top-left text-nowrap`} key={a.name}>
+                                {a.name}
+                            </p>
+                        );
+                    })
+                }
+                {
+                    content.list.map((a) => {
+                        return (
+                            <p aria-hidden="true" key={a.name + "_b"}>{a.name}</p>
+                        );
+                    })
+                }
+            </>
+        );
+    };
+
     return (
         <div className="w-full h-full py-10 flex">
 
@@ -71,8 +94,8 @@ export default function Stack() {
                         Technologies
                     </div>
                 </div> */}
-                <div className="face iso-front left-1/2 isobox-z-313 isobox-y-413 rotate-60 absolute top-full">
-                    <div className="fadeout-horizontal-15 h-[313px] w-[413px] absolute">
+                <div className="face iso-front left-1/2 isobox-z-313 isobox-y-409 rotate-60 absolute top-full">
+                    <div className="fadeout-horizontal-15 h-[313px] w-[409px] absolute">
                         <div
                             className="fadeout-vertical-15 h-full w-full transition-all duration-800 delay-300"
                             style={{
@@ -86,30 +109,91 @@ export default function Stack() {
                         </div>
                     </div>
 
-                    {/* NODELINKS */}
                     <div className="iso-grid-size-24">
+
+                        {/* BOX 1 BACKEND */}
+                        <div
+                            className={`rotate-180 [&>div]:bg-background [&>div]:duration-800 [&>div>div]:duration-800 [&>div>div]:transition-all select-none cursor-pointer 
+offset-coords-x-5 offset-coords-y-4 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border ease-in-out 
+iso-isobox-z-9 iso-isobox-y-2`}
+                            style={{ "--x-size": 1.5 } as React.CSSProperties}
+                        >
+                            <div className="face iso-top">
+                                <div className="w-full h-full">
+                                    <div className="rotate-180 text-2xl font-heading-now-medium tracking-wide overflow-clip w-full h-full">
+                                        <div className={`text-end transition-all text-zinc-300 duration-800 gap-1 relative origin-top-left flex left-full pl-1 rotate-90 marquee-track-x speed-16`}>
+                                            {ContentMapper(backend_stack)}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="face iso-side">
+                                <div className="w-full h-full"></div>
+                            </div>
+                            <div className="face iso-front">
+                                <div className="w-full h-full font-heading-now-medium text-5xl tracking-wide">
+                                    <div className="rotate-180 text-center">Backend Stack</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* BOX 2 FRONTEND */}
+                        <div
+                            className={`rotate-180 [&>div]:bg-background [&>div]:duration-800 [&>div>div]:duration-800 [&>div>div]:transition-all select-none cursor-pointer 
+offset-coords-x-10 offset-coords-y-6 iso-normal iso-grid-size-24 transition-all [&>div]:transition-all duration-800 absolute [&>div>div]:border ease-in-out 
+iso-isobox-z-9 iso-isobox-y-2`}
+                            style={{ "--x-size": 1.5 } as React.CSSProperties}
+                        >
+                            <div className="face iso-top">
+                                <div className="w-full h-full">
+                                    <div className="rotate-180 text-2xl font-heading-now-medium tracking-wide overflow-clip w-full h-full">
+                                        <div className={`text-end transition-all text-zinc-300 duration-800 gap-1 relative origin-top-left flex left-full pl-1 rotate-90 marquee-track-x speed-12`}>
+                                            {ContentMapper(frontend_stack)}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="face iso-side">
+                                <div className="w-full h-full"></div>
+                            </div>
+                            <div className="face iso-front">
+                                <div className="w-full h-full font-heading-now-medium text-5xl tracking-wide">
+                                    <div className="rotate-180 text-center">Frontend Stack</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* NODELINKS */}
+                        <div className="w-grid-sized-1 h-grid-sized-1 absolute plane-coords-x-2 plane-coords-y-18">
+                            <div className="rotate-90 tracking-wider text-neutral-700 font-heading-now-medium text-4xl text-nowrap">
+                                Skillset <span className="text-5xl">&</span> Technologies
+                            </div>
+                        </div>
+
+                        {/* <div className="w-grid-sized-1 h-grid-sized-1 absolute plane-coords-x-13 plane-coords-y-15">
+                            <div className="rotate-180 tracking-wide text-neutral-700 font-heading-now-medium text-4xl text-nowrap">
+                                skillset <span className="text-5xl">&</span>Technologies
+                            </div>
+                        </div> */}
+
                         <div className={`w-grid-sized-1 h-grid-sized-7 rounded-tl-full border-t border-l border-dashed plane-coords-x-4 plane-coords-y-1 
 absolute ${clicked !== "02" ? "border-neutral-500" : "border-neutral-500"}`}>
                         </div>
 
-                        <div className={`w-grid-sized-1 h-grid-sized-2 rounded-tl-full border-t border-l border-dashed plane-coords-x-9 plane-coords-y-2 
+                        <div className={`w-grid-sized-2 h-grid-sized-2 rounded-tl-full border-t border-l border-dashed plane-coords-x-9 plane-coords-y-2 
 absolute ${clicked !== "01" ? "border-neutral-500" : "border-neutral-500"}`}>
                             {/* <div className="absolute w-grid-sized-1 h-grid-sized-2 rounded-br-full border-b border-r border-dashed top-full -left-full"></div> */}
                         </div>
 
-                        <div className={`transition-opacity duration-400 w-grid-sized-1 h-grid-sized-2 border-dashed border border-neutral-500 absolute plane-coords-y-3 plane-coords-x-8 
+                        {/* <div className={`transition-opacity duration-400 w-grid-sized-1 h-grid-sized-2 border-dashed border border-neutral-500 absolute plane-coords-y-3 plane-coords-x-8 
 bg-background ${clicked === "01" ? "opacity-100" : "opacity-0"
                             }`}>
-                            {/* <span className="w-full h-full select-none text-center font-heading-now-larger inline-block text-2xl rotate-180 text-neutral-500">
-                                F
-                            </span> */}
-                        </div>
-                        <div className={`transition-opacity duration-400 w-grid-sized-1 h-grid-sized-2 border-dashed border border-neutral-500 absolute plane-coords-y-2 plane-coords-x-3 
+                           
+                        </div> */}
+                        {/* <div className={`transition-opacity duration-400 w-grid-sized-1 h-grid-sized-2 border-dashed border border-neutral-500 absolute plane-coords-y-2 plane-coords-x-3 
 bg-background ${clicked === "02" ? "opacity-100" : "opacity-0"}`}>
-                            {/* <span className="select-none font-heading-now-larger inline-block text-2xl rotate-180 text-neutral-500">
-                                B
-                            </span> */}
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="iso-grid-size-12">
@@ -169,24 +253,24 @@ bottom-0.5 ${clicked === "00" ? "w-26 border-neutral-700" : "w-43 border-neutral
                 /> */}
 
                 {/* FRONTEND STACK */}
-                <IsometricBox
+                {/* <IsometricBox
                     data_id="01" section={frontend_stack}
-                    className={`-translate-x-[calc(500%+40px)] translate-y-[calc(340%-2px)] isobox-z-50 isobox-y-38 isobox-x-205 [&>div]:bg-background hover:[&>div]:bg-transparent 
-[&>div]:p-0.5 [&>div]:border`}
+                    className={`-translate-x-[calc(500%+40px)] translate-y-[calc(340%-2px)] isobox-z-50 isobox-y-38 isobox-x-235 [&>div]:bg-background 
+[&>div]:p-0.5 [&>div]:border [&>div]:border-neutral-300`}
                     clicked={clicked} setClicked={setClicked}
-                />
+                /> */}
 
                 {/* BACKEND STACK */}
-                <IsometricBox
+                {/* <IsometricBox
                     data_id="02" section={backend_stack}
-                    className={`-translate-x-[calc(500%+124px)] translate-y-[calc(340%+70px)] isobox-z-50 isobox-y-38 isobox-x-200 [&>div]:bg-background hover:[&>div]:bg-transparent 
-[&>div]:p-0.5 [&>div>div]:bg-[#303030]`}
+                    className={`-translate-x-[calc(500%+124px)] translate-y-[calc(340%+70px)] isobox-z-50 isobox-y-38 isobox-x-230 [&>div]:bg-background 
+[&>div]:p-0.5 [&>div]:border [&>div]:border-neutral-300`}
                     clicked={clicked} setClicked={setClicked}
-                />
+                /> */}
 
-                <div className="font-literata text-3xl text-neutral-600 absolute -top-4 left-2 border-b-0 border-r pb-1 w-[58px]">
+                {/* <div className="font-literata text-3xl text-neutral-600 absolute -top-4 left-2 border-b-0 border-r pb-1 w-[58px]">
                     {`#${clicked}`}
-                </div>
+                </div> */}
 
                 <div className="select-none w-2/3 h-px mt-31 ml-7 font-heading-now-medium flex text-2xl tracking-wide relative">
                     <div className={`ease-in-out flex flex-wrap-reverse gap-4 transition-opacity duration-800 top-full ${clicked === "02" ? "opacity-100 delay-400" : "delay-0 opacity-0 duration-500 select-none"}`}>
@@ -231,7 +315,6 @@ bottom-0.5 ${clicked === "00" ? "w-26 border-neutral-700" : "w-43 border-neutral
                 </div>
 
                 <div
-
                     onClick={(e) => {
                         setClicked((clicked === "01" ? "02" : "01"));
                     }}
@@ -250,6 +333,17 @@ bottom-0.5 ${clicked === "00" ? "w-26 border-neutral-700" : "w-43 border-neutral
                     </div>
                     <span className="h-full w-0 transition-all duration-700 ease-in-out text-xl font-literata ml-1 delay-300 overflow-clip">Next</span>
                     <a className="absolute bottom-full font-literata text-neutral-500 ml-3.5">#{clicked}</a>
+                </div>
+
+                <div className="absolute top-40 right-40">
+                    <div className="face iso-side">
+                        <div className="rotate-90 w-fit h-fit">
+                            <div className="font-heading-now-medium text-6xl text-neutral-500 tracking-wide text-nowrap w-fit h-fit">
+                                Frontend stack
+                            </div>
+                            <div className="w-full h-20 border-r border-t border-neutral-500"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div >

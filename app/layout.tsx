@@ -62,7 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${anton.className} ${heading16Bold.variable} ${literata.variable} ${heading25Med.variable} ${heading46Bold.variable} ${dm_sans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${anton.className} ${heading16Bold.variable} ${literata.variable} ${heading25Med.variable} ${heading46Bold.variable} ${dm_sans.variable} antialiased scroll-smooth`}
       >
         {children}
       </body>

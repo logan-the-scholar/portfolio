@@ -91,7 +91,7 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className="text-sm min-h-screen font-sans w-full relative overflow-hidden">
+    <div className="text-sm min-h-screen font-sans w-full relative overflow-hidden scroll-smooth">
       <nav className="w-full absolute">
         <div className="w-[95%] h-15 mx-auto px-4 my-2 flex justify-between">
           <div className="h-13 my-auto border rounded-full bg-zinc-50 border-zinc-50 w-13 items-center select-none text-center text-background text-4xl font-serif font-bold underline underline-offset-2">
@@ -354,7 +354,7 @@ iso-isobox-z-1 iso-isobox-y-1`}
 
                 {/* NODELINKS */}
                 <div className="iso-grid-size-24">
-                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-b border-r w-18 h-24 absolute z-40 plane-coords-x-0 
+                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-b-2 border-r-2 w-18 h-24 absolute z-40 plane-coords-x-0 
 plane-coords-y-6 rounded-br-full ${sequence[0][current] === 1 ?
                       "border-amber-50" : sequence[0][current] === sequence[0][0] ?
                         "border-red-400" : "border-cyan-300"}`}>
@@ -363,11 +363,11 @@ plane-coords-y-6 rounded-br-full ${sequence[0][current] === 1 ?
                     </div>
                   </div>
 
-                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-b border-r w-[72px] h-6 absolute z-40 plane-coords-x-6 
+                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-b-2 border-r-2 w-[72px] h-6 absolute z-40 plane-coords-x-6 
 plane-coords-y-6 rounded-br-full ${sequence[1][current] === 1 ?
                       "border-amber-50" : sequence[1][current] === sequence[1][0] ?
                         "border-amber-400" : "border-pink-300"}`}>
-                    <div className={`transition-colors duration-800 border-dashed border-t border-l h-6 w-[96px] absolute bottom-full left-full rounded-tl-full 
+                    <div className={`transition-colors duration-800 border-dashed border-t-2 border-l-2 h-6 w-[96px] absolute bottom-full left-full rounded-tl-full 
 ${sequence[1][current] === 1 ?
                         "border-amber-50" : sequence[1][current] === sequence[1][0] ?
                           "border-amber-400" : "border-pink-300"
@@ -378,7 +378,7 @@ ${sequence[1][current] === 1 ?
                     </div>
                   </div>
 
-                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-t border-r w-12 h-20 absolute z-40 plane-coords-x-10 
+                  <div className={`transition-colors duration-800 border-dashed opacity-60 border-t-2 border-r-2 w-12 h-20 absolute z-40 plane-coords-x-10 
 plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
                       "border-amber-50" : sequence[2][current] === sequence[2][0] ?
                         "border-lime-400" : "border-yellow-400"
@@ -471,13 +471,15 @@ plane-coords-y-6 rounded-tr-full ${sequence[2][current] === 1 ?
 
             </div>
 
-            <div className="select-none face iso-side relative text-7xl text-neutral-500 transition-colors duration-700 ease-in-out hover:text-neutral-500 font-heading-now-medium right-5/20 top-4/10">
+            <div className="select-none face iso-side relative text-7xl text-neutral-500 transition-colors duration-700 ease-in-out hover:text-neutral-500 font-heading-now-medium right-5/20 top-9/20">
               <div className="w-fit h-fit rotate-90 text-nowrap leading-16 pb-3 pl-3 pr-3">
-                <div className="pr-20 border-b">
+                <div className="pl-4">
                   <span className="font-sans mr-1 tracking-tighter"><span className="font-heading-now-medium">+</span>1</span>Año de
                 </div>
-                <div className="ml-9 pl-1 border-b-0">
-                  experiencia
+                <div className="ml-9 pl-1 border-b-0 rounded-tr-full border-t border-r">
+                  <span className="mr-12">
+                    experiencia
+                  </span>
                 </div>
               </div>
             </div>
